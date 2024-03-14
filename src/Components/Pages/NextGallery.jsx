@@ -2,20 +2,17 @@ import React, {useState} from "react";
 import Styles from "./Gallery.module.css";
 import {Link} from "react-router-dom";
 
-export const Gallery = () => {
+export const NextGallery = () => {
   const [images, setImages] = useState([
-    {id: 11, src: "../assets/images/mg11.jpg", caption: "Image 11"},
-    {id: 12, src: "../assets/images/mg12.jpg", caption: "Image 12"},
-    {id: 1, src: "../assets/images/mg1.jpg", caption: "Image 1"},
-    {id: 2, src: "../assets/images/mg2.jpg", caption: "Image 2"},
-    {id: 3, src: "../assets/images/mg3.jpg", caption: "Image 3"},
-    {id: 4, src: "../assets/images/mg4.jpg", caption: "Image 4"},
-    {id: 5, src: "../assets/images/mg5.jpg", caption: "Image 5"},
-    {id: 6, src: "../assets/images/mg6.jpg", caption: "Image 6"},
-    {id: 7, src: "../assets/images/mg7.jpg", caption: "Image 7"},
-    {id: 8, src: "../assets/images/mg8.jpg", caption: "Image 8"},
-    {id: 9, src: "../assets/images/mg9.jpg", caption: "Image 9"},
-    {id: 10, src: "../assets/images/mg10.jpg", caption: "Image 10"},
+    {id: 13, src: "../assets/images/mg13.jpg", caption: "Image 13"},
+    {id: 14, src: "../assets/images/mg14.jpg", caption: "Image 14"},
+    {id: 15, src: "../assets/images/mg15.jpg", caption: "Image 15"},
+    {id: 16, src: "../assets/images/mg16.jpg", caption: "Image 16"},
+    {id: 17, src: "../assets/images/mg17.jpg", caption: "Image 17"},
+    {id: 18, src: "../assets/images/mg18.jpg", caption: "Image 18"},
+    {id: 19, src: "../assets/images/mg19.jpg", caption: "Image 19"},
+    {id: 20, src: "../assets/images/mg20.jpg", caption: "Image 20"},
+    {id: 21, src: "../assets/images/mg21.jpg", caption: "Image 21"},
   ]);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -45,8 +42,8 @@ export const Gallery = () => {
           </div>
         </div>
       )}
-      <Link to="/NextGallery" className={Styles.btn}>
-        <button>Next</button>
+      <Link to="/Gallery" className={Styles.btn}>
+        <button>Previous</button>
       </Link>
     </div>
   );
