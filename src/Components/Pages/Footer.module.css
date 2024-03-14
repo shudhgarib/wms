@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+footer {
+  background-color: rgb(6, 6, 5);
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  display: end;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.footer_heading_text {
+  color: white;
+  font-size: large;
+}
+
+.footer_heading_text:hover {
+  color: black;
+}
+
+p {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
