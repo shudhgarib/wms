@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import Styles from "./Gallery.module.css";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+import {NextGallery} from "./NextGallery";
 
 export const Gallery = () => {
   const [images, setImages] = useState([
-    {id: 11, src: "../assets/images/mg11.jpg", caption: "Image 11"},
-    {id: 12, src: "../assets/images/mg12.jpg", caption: "Image 12"},
     {id: 1, src: "../assets/images/mg1.jpg", caption: "Image 1"},
     {id: 2, src: "../assets/images/mg2.jpg", caption: "Image 2"},
     {id: 3, src: "../assets/images/mg3.jpg", caption: "Image 3"},
@@ -16,6 +15,8 @@ export const Gallery = () => {
     {id: 8, src: "../assets/images/mg8.jpg", caption: "Image 8"},
     {id: 9, src: "../assets/images/mg9.jpg", caption: "Image 9"},
     {id: 10, src: "../assets/images/mg10.jpg", caption: "Image 10"},
+    {id: 11, src: "../assets/images/mg11.jpg", caption: "Image 11"},
+    {id: 12, src: "../assets/images/mg12.jpg", caption: "Image 12"},
   ]);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -45,6 +46,7 @@ export const Gallery = () => {
           </div>
         </div>
       )}
+
       <Link to="/NextGallery" className={Styles.btn}>
         <button>Next</button>
       </Link>

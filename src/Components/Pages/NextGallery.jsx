@@ -13,6 +13,19 @@ export const NextGallery = () => {
     {id: 19, src: "../assets/images/mg19.jpg", caption: "Image 19"},
     {id: 20, src: "../assets/images/mg20.jpg", caption: "Image 20"},
     {id: 21, src: "../assets/images/mg21.jpg", caption: "Image 21"},
+    {id: 22, src: "../assets/images/gallery01.jpg", caption: "Image 22"},
+    {id: 23, src: "../assets/images/gallery02.jpg", caption: "Image 23"},
+    {id: 24, src: "../assets/images/gallery03.jpg", caption: "Image 24"},
+    {id: 25, src: "../assets/images/gallery04.jpg", caption: "Image 25"},
+    {id: 26, src: "../assets/images/gallery05.jpg", caption: "Image 26"},
+    {id: 27, src: "../assets/images/gallery06.jpg", caption: "Image 27"},
+    {id: 28, src: "../assets/images/gallery07.jpg", caption: "Image 28"},
+    {id: 29, src: "../assets/images/gallery08.jpg", caption: "Image 29"},
+    {id: 30, src: "../assets/images/gallery09.jpg", caption: "Image 30"},
+    {id: 31, src: "../assets/images/gallery10.jpg", caption: "Image 31"},
+    {id: 32, src: "../assets/images/gallery11.jpg", caption: "Image 32"},
+    {id: 33, src: "../assets/images/gallery12.jpg", caption: "Image 33"},
+    {id: 34, src: "../assets/images/gallery13.jpg", caption: "Image 34"},
   ]);
   const [selectedImage, setSelectedImage] = useState(null);
 

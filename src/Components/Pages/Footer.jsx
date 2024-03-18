@@ -1,51 +1,58 @@
 // Footer.js
 import styles from "./Footer.module.css";
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className={styles.main}>
-      <div className={styles.footer_container}>
-        <p className={styles.footer_heading_text}>About Us</p>
-        <p>
+    <>
+      <footer className={styles.footer}>
+        {/* left elements */}
+        <div class={styles.left}>
+          <p style={{textAlign: "left"}}>
+            <strong>Quick Links</strong>
+            <br />
+            <a href="#">Home</a>
+            <br />
+            <a href="#">Donation</a>
+            <br />
+            <a href="#">Reservation</a>
+            <br />
+            <a href="#">Contact Us</a>
+          </p>
+        </div>
+
+        {/* center elements */}
+
+        <div class={styles.center}>
+          <p className={styles.centered_paragraph}>
+            © 2024 biharipoojapath.com. All Rights Reserved. <br />
+            Designed by Mr. Rajan Patel. <br />
+            <a href="/cancellation">Cancellation and Refund</a> <br />
+            <a href="/shipping">Shipping and Delivery</a> <br />
+            <a href="/terms">Terms & Conditions</a> <br />
+            <a href="/privacy">Privacy & Policy</a>
+          </p>
+        </div>
+        {/* right elements */}
+        <div class={styles.right}>
+          <strong>Quick Links</strong>
+          <br />
+          <a href="#">WhatsApp</a>
+          <br />
+          <a href="#">InstaGram</a>
+          <br />
+          <a href="#">FaceBook</a>
+          <br />
+          <a href="#">Twitter</a>
+        </div>
+
+        <p className={styles.footer_wrap}>
           We are a worship website that provides donation and reservation
-          services for devotees. We aim to make your worship experience easy and
-          convenient.
+          services for devotees.
+          <br /> We aim to make your worship experience easy and convenient.
         </p>
-        <div className="footer_nav">
-          <p className={styles.footer_heading_text}>Quick Links</p>
-          <a href="/">Home</a>
-          <span>|</span>
-          <a href="/donation">Donation</a>
-          <span>|</span>
-          <a href="/reservation">Reservation</a>
-          <span>|</span>
-          <a href="/contact">Contact Us</a>
-        </div>
-      </div>
-      <div className="footer_social_links">
-        <p className={styles.footer_heading_text}>Follow Us</p>
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-twitter"></a>
-        <a href="#" class="fa fa-instagram"></a>
-        <a href="#" class="fa fa-linkedin"></a>
-        <a href="#" class="fa fa-youtube"></a>
-        <a href="#" class="fa fa-pinterest"></a>
-      </div>
-      <div className="footer_info">
-        <p>© {currentYear} biharipoojapath.com. All Rights Reserved.</p>
-        <p>Designed by Mr. Rajan Patel.</p>
-        <div className={styles.footer_wrap}>
-          <a href="/cancellation">Cancellation and Refund</a> |{" "}
-          <a href="/shipping">Shipping and Delivery</a> |{" "}
-          <a href="/terms">Terms & Conditions</a> |{" "}
-          <a href="/privacy">Privacy & Policy</a>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

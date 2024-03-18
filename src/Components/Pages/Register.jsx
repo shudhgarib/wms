@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "./Donate.module.css";
-import {Link} from "react-router-dom";
+import styles from "./Register.module.css";
 
-export const Donate = () => {
+export const Register = () => {
   return (
     <>
       <form action="" method="post" className={styles.form}>
@@ -41,7 +40,9 @@ export const Donate = () => {
           <div className={styles.member}>
             <p>
               Don't have an account?{" "}
-              <Link to="/Pages/Register">Register Now</Link>
+              <a href="/register">
+                <span>Register now</span>
+              </a>
             </p>
           </div>
         </div>
@@ -50,4 +51,4 @@ export const Donate = () => {
   );
 };
 
-export default Donate;
+export default Register;
