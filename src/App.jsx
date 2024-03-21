@@ -7,9 +7,10 @@ import {
   Home,
   View_List,
   Donate,
+  Register,
   Book_Place,
   Gallery,
-  More,
+  About,
 } from "./Components/Pages";
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Donate" element={<Donate />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Book_Place" element={<Book_Place />} />
         <Route path="/View_List" element={<View_List />} />
         <Route path="/Gallery" element={<Gallery />} />
-        <Route path="/More" element={<More />} />
+        <Route path="/About" element={<About />} />
       </Routes>
       <Footer />
     </div>

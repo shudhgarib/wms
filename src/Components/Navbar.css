@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --header-height: 3.5rem;
+  /* Other custom properties */
+}
+
 .active {
   background-color: #1d4ed8;
 }
@@ -6,7 +19,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0f172a;
+  background-color: black;
   position: sticky;
   top: 0;
   z-index: 99;
@@ -59,38 +72,6 @@ nav .menu span {
   border-radius: 0.2rem;
 }
 
-/* 
-@media(max-width: 480px) {
-  nav .menu {
-    display: flex;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: start;
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-
-  nav ul.open {
-    display: flex;
-  }
-
-  nav ul li {
-    width: 100%;
-    text-align: center;
-  }
-
-  nav ul li a {
-    margin: 0.2rem 0.5rem;
-  }
-} */
-
 @media(max-width: 720px) {
   nav .menu {
     display: flex;
@@ -134,11 +115,12 @@ nav img {
 
 /* logo end */
 
-/* More Select start */
 .more {
-  background-color: #0f172a;
-  outline: none;
-  color: white;
+  border: none;
+  text-align: center;
 }
 
-/* More Select end */
+option {
+  background-color: black;
+
+}

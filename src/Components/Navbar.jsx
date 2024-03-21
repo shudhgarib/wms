@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DropdownMenu from "./Pages/DropdownMenu";
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -34,16 +35,7 @@ export const Navbar = () => {
         <li>
           <NavLink to="/Gallery">Gallery</NavLink>
         </li>
-        {/*  <li>
-   <NavLink to="/More"> 
-            <select>
-              <option selected>More</option>
-              <option value="1">About Us</option>
-              <option value="2">How We Work?</option>
-              <option value="3">Admin Panel</option>
-            </select>   
-          </NavLink>
-        </li>  */}
+        <DropdownMenu />
       </ul>
     </nav>
   );
