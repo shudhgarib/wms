@@ -1,15 +1,20 @@
 import React, {useState} from "react";
 import {Link, NavLink} from "react-router-dom";
+import Dropdown from "./Dropdown";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DropdownMenu from "./Pages/DropdownMenu";
+
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false); // State for the dropdown
+
   return (
     <nav>
       <img
         src="//biharipoojapath.com/assets/images/sun.webp"
-        className="logo"></img>
+        className="logo"
+        alt="Logo"
+      />
       <Link to="/" className="title">
         <span className="heading_title">श्री छठ पूजा समिति !</span>
       </Link>
@@ -35,7 +40,17 @@ export const Navbar = () => {
         <li>
           <NavLink to="/Gallery">Gallery</NavLink>
         </li>
-        <DropdownMenu />
+        <li>
+          <NavLink
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setDropdownOpen(!dropdownOpen);
+            }}>
+            More
+          </NavLink>
+          {dropdownOpen && <Dropdown />}
+        </li>
       </ul>
     </nav>
   );
