@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  width: 400px;
+  display: flex;
+  border: 5px solid #4CCD99;
+  box-shadow: 5px 5px 20px #4CCD99, -2px -2px 0px #4CCD99;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 50px auto;
+}
+
+input,
+textarea {
+  width: 350px;
+}
+
+h4 {
+  margin-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.hr_tag {
+  color: black;
+  background-color: black;
+}
+
+label {
+  display: flex;
+  /* color: gray; */
+}
+
+input,
+textarea {
+  border: 2px solid #4CCD99;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+::placeholder {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+
+.btn:hover {
+  color: white;
+  background-color: #FFF455;
+}

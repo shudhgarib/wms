@@ -1,0 +1,91 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal img {
+  max-width: 100%;
+  max-height: 80vh;
+  margin-bottom: 10px;
+}
+
+.modal p {
+  margin: 0;
+}
+
+.modal button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #555;
+}
+
+.heading {
+  text-align: center;
+  font-weight: bold;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Display 3 images in one row */
+  gap: 10px;
+  padding: 10px 50px 70px 50px;
+  /* Add padding around the gallery */
+}
+
+@media (max-width:640px) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  /* Rounded corners on top sides */
+  overflow: hidden;
+  /* Clip the overflow from rounded corners */
+  transition: transform 0.2s ease;
+  /* Smooth transition for zoom-out effect */
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+  /* Zoom out effect on hover */
+}
