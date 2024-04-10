@@ -17,7 +17,7 @@ const Dropdown = () => {
           style={{
             display: "flex",
             float: "left",
-            color: "",
+            color: "#FFF455",
           }}>
           <h5 class="animate__animated animate__bounceInLeft">
             Committee - Members!
@@ -28,10 +28,10 @@ const Dropdown = () => {
           className="select-button"
           style={{
             display: "flex",
-            // marginLeft: "500px",
-            // justifyContent: "flex-end",
           }}>
-          <button className="buttons">▼ &nbsp; Select</button>
+          <button className="buttons animate__animated animate__bounceInRight">
+            ▼ &nbsp; Select
+          </button>
           <div className="dropdown-content">
             <Link to="/TowK24" id="top">
               2024

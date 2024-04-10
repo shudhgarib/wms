@@ -2,35 +2,45 @@ import React from "react";
 
 function Contact_point() {
   return (
-    <div>
-      <div className="point">
+    <>
+      <div classNameName="container">
         <ul
-          className="list_wrap"
+          classNameName="list_wrap"
           style={{
             fontFamily: "Poppins",
             fontSize: "22px",
             overflow: "hidden",
           }}>
-          <li class="animate__animated animate__fadeInRight">
+          <li
+            className="animate__animated animate__fadeInRight"
+            style={{padding: "20px 0"}}>
             🔘 I have a hot tip.
           </li>
-          <li class="animate__animated animate__fadeInLeft">
+          <li
+            className="animate__animated animate__fadeInLeft"
+            style={{padding: "20px 0"}}>
             🔘 need something else.
           </li>
-          <li class="animate__animated animate__fadeInRight">
+          <li
+            className="animate__animated animate__fadeInRight"
+            style={{padding: "20px 0"}}>
             🔘 want to report a correction.
           </li>
-          <li class="animate__animated animate__fadeInLeft">
+          <li
+            className="animate__animated animate__fadeInLeft"
+            style={{padding: "20px 0"}}>
             🔘 want to report a bug or technical issue.
           </li>
-          <li class="animate__animated animate__fadeInRight">
+          <li
+            className="animate__animated animate__fadeInRight"
+            style={{padding: "20px 0"}}>
             🔘 want to advertise on "
-            <span style={{color: "#4CCD99"}}>biharipoojapath.com</span>
+            <span style={{color: "#FFF455"}}>biharipoojapath.com</span>
             ".
           </li>
         </ul>
       </div>
-    </div>
+    </>
   );
 }
 

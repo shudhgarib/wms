@@ -37,7 +37,7 @@ const Navbarmenu = () => {
         fontFamily: "Poppins",
         top: "0",
         zIndex: "1000",
-        boxShadow: "5px 5px 10px #4CCD99",
+        boxShadow: "-5px -7px 10px #4CCD99, 0 0 20px #4CCD99",
         border: "none",
       }}>
       <div className="container">

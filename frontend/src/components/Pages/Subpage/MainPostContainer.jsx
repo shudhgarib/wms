@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import "./MainPostContainer.module.css";
 
 const MainPostContainer = () => {
   const [images, setImages] = useState([
     {id: 1, src: "../assets/images/satyamgray.png", caption: "अध्यक्ष"},
     {id: 2, src: "../assets/images/drugs.png", caption: "उपाध्यक्ष"},
-    {id: 3, src: "../assets/images/golugray.jpg", caption: "कोषाध्यक्ष"},
+    {id: 3, src: "../assets/images/golugray.png", caption: "कोषाध्यक्ष"},
   ]);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -33,21 +32,22 @@ const MainPostContainer = () => {
                 }}>
                 <img
                   style={{
-                    border: "7px solid white",
+                    border: "7px solid #FFF455",
                     width: "100%",
                     borderRadius: "100%",
-                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 1)",
+
+                    boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
                   }}
-                  className=""
+                  className="animate__animated animate__zoomIn"
                   src={image.src}
                   alt={image.caption}
                   onClick={() => handleImageClick(image)}
                 />
                 <p
-                  class="animate__animated animate__zoomIn"
+                  class="animate__animated animate__rotateInUpLeft"
                   style={{
                     marginTop: "10px",
-                    color: "",
+                    color: "#FFF455",
                   }}>
                   {image.caption}
                 </p>

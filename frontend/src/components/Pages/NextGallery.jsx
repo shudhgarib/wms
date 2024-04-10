@@ -31,7 +31,15 @@ export const NextGallery = () => {
 
   return (
     <div>
-      <h1 className={Styles.heading}>Gallery</h1>
+      <h1
+        className="animate__animated animate__zoomIn"
+        style={{
+          textAlign: "center",
+          marginTop: "20px",
+          color: "white",
+        }}>
+        Gallery
+      </h1>
       <div className={Styles.gallery}>
         {images.map((image) => (
           <img

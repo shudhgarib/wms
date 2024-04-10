@@ -10,17 +10,35 @@ const Book_Place = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "80vh",
+        margin: "auto",
+        maxWidth: "50%",
+        border: "2px solid #4CCD99",
+        borderRadius: "20px",
+        boxShadow: "5px 5px 20px #4CCD99, -2px -2px 0px #4CCD99",
+        overflow: "hidden",
       }}>
       <input
+        className="animate__animated animate__zoomIn"
+        style={{
+          border: "2px solid #fff",
+          borderRadius: "30px",
+          maxWidth: "100%",
+          margin: "10px",
+        }}
         type="number"
         placeholder="Enter number of members for pooja."
-        style={{
-          marginBottom: "20px",
-          padding: "10px",
-        }}
       />
-      <Button variant="primary" type="submit">
+      <Button
+        className="animate__animated animate__bounceInLeft"
+        type="submit"
+        style={{
+          backgroundColor: "#4CCD99",
+          border: "none",
+          display: "flex",
+          marginBottom: "10px",
+          borderRadius: "30px",
+          fontWeight: "bold",
+        }}>
         Book
       </Button>
     </div>

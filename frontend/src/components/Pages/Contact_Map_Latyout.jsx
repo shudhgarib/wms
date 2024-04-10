@@ -20,7 +20,7 @@ function Contact_Map_Latyout() {
                 fontFamily: "Poppins",
                 fontWeight: "400",
                 fontStyle: "normal",
-                color: "#4CCD99",
+                color: "#FFF455",
                 textAlign: "center",
               }}
               class="animate__animated animate__fadeInLeft">
@@ -52,21 +52,21 @@ function Contact_Map_Latyout() {
               }}>
               <p class="animate__animated animate__jackInTheBox">
                 {" "}
-                <span style={{color: "#4CCD99", fontSize: "20px"}}>
+                <span style={{color: "#FFF455", fontSize: "20px"}}>
                   Email
                 </span>{" "}
                 contact@biharipoojapath.com{" "}
               </p>
               <p class="animate__animated animate__jackInTheBox">
                 {" "}
-                <span style={{color: "#4CCD99", fontSize: "20px"}}>
+                <span style={{color: "#FFF455", fontSize: "20px"}}>
                   Telephone
                 </span>{" "}
                 +91 62060 11605
               </p>
               <p class="animate__animated animate__jackInTheBox">
                 {" "}
-                <span style={{color: "#4CCD99", fontSize: "20px"}}>
+                <span style={{color: "#FFF455", fontSize: "20px"}}>
                   Customer Care
                 </span>{" "}
                 +91 93049 19837
@@ -77,7 +77,7 @@ function Contact_Map_Latyout() {
             <h3
               style={{
                 margin: "10px",
-                color: "#4CCD99",
+                color: "#FFF455",
                 textAlign: "center",
               }}
               class="animate__animated animate__fadeInRight">
@@ -88,7 +88,7 @@ function Contact_Map_Latyout() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1837636.858336046!2d84.4875357133984!3d25.89794901642395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5844f0bb6903%3A0x57ad3fed1bbae325!2sBihar!5e0!3m2!1sen!2sin!4v1712391275507!5m2!1sen!2sin"
                 width="550"
                 height="450"
-                loading="fast"
+                loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
                 style={{
                   border: "5px solid #4CCD99",

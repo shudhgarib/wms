@@ -7,9 +7,45 @@
  .page h4 {
    text-align: center;
    color: white;
+   color: #bbebd8;
  }
 
- b {
-   color: #ddae02;
+ span {
+   color: #FFF455;
    font-size: 500;
+   font-weight: bold;
+   padding: 0px 5px;
+ }
+
+ p span {
+   display: inline-block;
+   position: relative;
+ }
+
+ p span {
+   display: inline-block;
+   transform-origin: bottom left;
+   animation: spanScale 5s ease-in-out infinite alternate;
+ }
+
+ @keyframes spanScale {
+   0% {
+     transform: scaleY(1);
+     color: #fbee3b;
+   }
+
+   25% {
+     transform: scaleX(1);
+     color: #f6e718;
+   }
+
+   75% {
+     transform: scalY(1);
+     color: #ccc346;
+   }
+
+   100% {
+     transform: scaleX(1);
+     color: #ffee00;
+   }
  }

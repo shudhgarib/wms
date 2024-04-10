@@ -6,6 +6,7 @@ function ContactHeading() {
       <div className="email" style={{marginTop: "45px"}}>
         <a href="mailto:rajanunltd@gmail.com">
           <img
+            className="animate__animated animate__zoomIn"
             style={{
               display: "flex",
               alignItems: "center",
@@ -32,7 +33,7 @@ function ContactHeading() {
             href="tel:+91 62060 11605"
             style={{
               textDecoration: "none",
-              color: "#4CCD99",
+              color: "#FFF455",
             }}>
             +91 62060 11605
           </a>
@@ -42,7 +43,7 @@ function ContactHeading() {
             style={{
               textDecoration: "none",
 
-              color: "#4CCD99",
+              color: "#FFF455",
             }}>
             contact@biharipoojapath.com
           </a>{" "}
@@ -55,7 +56,7 @@ function ContactHeading() {
       <div className="list_item">
         <h4
           class="animate__animated animate__shakeX"
-          style={{color: "red", fontFamily: "Poppins", color: "white"}}>
+          style={{color: "red", fontFamily: "Poppins", color: "#FFF455"}}>
           {" "}
           How Can We Help You?{" "}
         </h4>

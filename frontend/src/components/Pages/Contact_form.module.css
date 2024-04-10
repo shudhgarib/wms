@@ -23,17 +23,7 @@ textarea {
 h4 {
   margin-top: 10px;
   text-align: center;
-  color: #fff;
-}
-
-.hr_tag {
-  color: black;
-  background-color: black;
-}
-
-label {
-  display: flex;
-  /* color: gray; */
+  color: #FFF455;
 }
 
 input,
