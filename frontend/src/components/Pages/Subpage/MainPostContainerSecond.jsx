@@ -32,7 +32,7 @@ const MainPostContainerSecond = () => {
                 }}>
                 <img
                   style={{
-                    border: "7px solid #FFF455",
+                    border: "5px solid #e7e07a",
                     width: "100%",
                     borderRadius: "10px",
                     boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",

@@ -14,10 +14,16 @@ export const Donate = () => {
         method="post"
         className={styles.form}
         style={{fontFamily: "Poppins"}}>
-        <div className={styles.border}>
+        <div
+          className={styles.border}
+          style={{
+            overflow: "hidden",
+          }}>
           <h3
+            className="animate__animated animate__flipInX"
             style={{
               color: "white",
+              overflow: "hidden",
             }}>
             {action}
             <hr
@@ -163,12 +169,18 @@ export const Donate = () => {
               />
             </div>
           </div>
-          <div className="Inputs">
+          <div
+            className="Inputs"
+            style={{
+              overflow: "hidden",
+            }}>
             {action === "Register" ? (
               <div></div>
             ) : (
               <div
-                className={styles.forgot_password}
+                className={`${
+                  styles.forgot_password
+                } ${"animate__animated animate__slideInLeft"}`}
                 onClick={() => {
                   setAction("Forgot");
                 }}>
@@ -176,7 +188,10 @@ export const Donate = () => {
               </div>
             )}
           </div>
-          <div className={styles.submit_container}>
+          <div
+            className={`${
+              styles.submit_container
+            } ${"animate__animated animate__slideInUp"}`}>
             <div
               className={
                 action === "Login"

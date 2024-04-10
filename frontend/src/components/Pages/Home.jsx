@@ -52,7 +52,8 @@ export const Home = () => {
                           className="d-block w-100"
                           alt="..."
                           style={{
-                            border: "5px solid gray",
+                            border: "5px solid #4CCD99",
+
                             borderRadius: "20px",
                           }}
                         />
@@ -69,7 +70,7 @@ export const Home = () => {
               }}>
               <button
                 style={{
-                  backgroundColor: "black",
+                  backgroundColor: "#4CCD99",
                   width: "50px",
                   height: "50px",
                   display: "flex",
@@ -92,7 +93,7 @@ export const Home = () => {
               </button>
               <button
                 style={{
-                  backgroundColor: "black",
+                  backgroundColor: "#4CCD99",
                   width: "50px",
                   height: "50px",
                   display: "flex",
@@ -120,7 +121,6 @@ export const Home = () => {
       <div
         className="first_main"
         style={{
-          // backgroundColor: "gray",
           display: "flex",
           justifyContent: "space-between",
           fontFamily: "Poppins",
