@@ -26,7 +26,6 @@ const View_list = () => {
           marginTop: "50px",
           fontFamily: "Poppins",
         }}>
-        {/* Search bar */}
         <div
           className="main"
           style={{
@@ -35,6 +34,7 @@ const View_list = () => {
             justifyContent: "space-between",
             borderRadius: "20px 20px 0px 0px",
           }}>
+          {/* dropdown start */}
           <div className="dropdown">
             <Dropdown>
               <Dropdown.Toggle
@@ -61,6 +61,9 @@ const View_list = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
+          {/* dropdown end */}
+          {/* Search bar start*/}
+
           <div className="searchbar">
             <input
               type="text"
@@ -76,8 +79,9 @@ const View_list = () => {
             />
           </div>
         </div>
+        {/* Search bar end */}
 
-        {/* Table */}
+        {/* Table start*/}
         <Table
           striped
           bordered
@@ -113,6 +117,7 @@ const View_list = () => {
             ))}
           </tbody>
         </Table>
+        {/* Table end*/}
       </div>
     </>
   );

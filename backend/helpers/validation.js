@@ -26,3 +26,9 @@ exports.loginValidation = [
     .normalizeEmail({gmail_remove_dots: true}),
   check("password", "Password should be minimum 6 length").isLength({min: 6}),
 ];
+
+exports.forgetValidation = [
+  check("email", "Please enter a valid email")
+    .isEmail()
+    .normalizeEmail({gmail_remove_dots: true}),
+];

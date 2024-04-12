@@ -153,9 +153,134 @@ const login = (req, res) => {
     }
   );
 };
+const getUser = (req, res) => {
+  const authToken = req.headers.authorization.split(" ")[1];
+  const decode = jwt.verify(authToken, JWT_SECRET);
+
+  db.query(
+    "SELECT * FROM users WHERE id=?",
+    decode.id,
+    function (error, result, fields) {
+      if (error) throw error;
+      return res
+        .status(200)
+        .send({success: true, data: result[0], message: "Fetch Successfully!"});
+    }
+  );
+};
+
+const forgetPassword = (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({errors: errors.array()});
+  }
+  var email = req.body.email;
+  db.query(
+    "SELECT * FROM users WHERE email=? limit 1",
+    email,
+    function (error, result, fields) {
+      if (error) {
+        return res.status(400).json({message: error});
+      }
+      if (result.length > 0) {
+        let mailSubject = "Forget Password";
+        const randomString = randomstring.generate();
+        let content =
+          "<p>Hi, " +
+          result[0].name +
+          '\
+        Please <a href="http://127.0.0.1:8081/api/reset-password?token=' +
+          randomString +
+          '">click Here</a>to Reset your Password</p>\
+        ';
+        sendMail(email, mailSubject, content);
+
+        db.query(
+          `DELETE FROM password_resets WHERE email =(${db.escape(
+            result[0].email
+          )}`
+        );
+
+        db.query(
+          `INSERT INTO password_resets (email,token) VALUES(${db.escape(
+            result[0].email
+          )},'${randomString}')`
+        );
+
+        return res.status(200).send({
+          message: "Mail Sent Successfully for Reset Password!",
+        });
+      }
+
+      return res.status(401).send({
+        message: "Email doesn't exists!",
+      });
+    }
+  );
+};
+
+const resetPasswordLoad = (req, res) => {
+  try {
+    var token = req.query.token;
+    if (token == undefined) {
+      res.render("404");
+    }
+
+    db.query(
+      `SELECT * FROM password_resets where token=? limit 1`,
+      token,
+      function (error, result, fields) {
+        if (error) {
+          console.log(error);
+        }
+        if (result !== undefined && result.length > 0) {
+          db.query(
+            "SELECT * FROM users WHERE email=? limit 1",
+            result[0].email,
+            function (error, result, fields) {
+              if (error) {
+                console.log(error);
+              }
+              res.render("reset-password", {user: result[0]});
+            }
+          );
+        } else {
+          res.render("404");
+        }
+      }
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const resetPassword = (req, res) => {
+  if (req.body.password != req.body.confirm_password) {
+    res.render("reset-password", {
+      error_message: "password  not matching!",
+      user: {id: req.body.user_id, email: req.body.email},
+    });
+  }
+  bcrypt.hash(req.body.confirm_password, 10, (err, hash) => {
+    if (err) {
+      console.log(err);
+    }
+    db.query(`DELETE FROM password_resets WHERE email = '${req.body.email}'`);
+
+    db.query(
+      `UPDATE users SET passwor= '${hash}' WHERE id = '${req.body.user_id}'`
+    );
+    return res.render("message", {message: "password reset successfully!"});
+  });
+};
 
 module.exports = {
   register,
   verifyMail,
   login,
+  getUser,
+  forgetPassword,
+  resetPasswordLoad,
+  resetPassword,
 };
