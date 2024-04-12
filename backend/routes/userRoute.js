@@ -25,6 +25,7 @@ const upload = multer({
   fileFilter: fileFilter,
 });
 const {
+  updateProfileValidation,
   signUpValidation,
   loginValidation,
   forgetValidation,
@@ -47,5 +48,13 @@ router.post(
   "/forget-password",
   forgetValidation,
   userController.forgetPassword
+);
+
+router.post(
+  "/update-profile",
+  upload.single("image"),
+  updateProfileValidation,
+  isAuthorize,
+  userController.updateProfile
 );
 module.exports = router;

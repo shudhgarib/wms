@@ -32,3 +32,10 @@ exports.forgetValidation = [
     .isEmail()
     .normalizeEmail({gmail_remove_dots: true}),
 ];
+
+exports.updateProfileValidation = [
+  check("name", "Name is required").not().isEmpty(),
+  check("email", "Please enter a valid email")
+    .isEmail()
+    .normalizeEmail({gmail_remove_dots: true}),
+];
