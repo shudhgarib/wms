@@ -5,10 +5,10 @@
 }
 
 .buttons {
-  margin-top: 10px;
+  margin-top: 15px;
   background-color: #4CCD99;
   color: #FFF455;
-  padding: 10px 15px;
+  padding: 5px 10px;
   font-size: 15px;
   font-weight: bold;
   border: 2px solid transparent;
@@ -18,10 +18,10 @@
 
 .dropdown-content {
   display: none;
-  font-size: 25px;
+  font-size: 20px;
   position: absolute;
   z-index: 1;
-  min-width: 100px;
+  /* min-width: 100px; */
   background-color: #4CCD99;
   border: 2px solid #FFF455;
   border-radius: 0px 0px 15px 15px;
@@ -37,8 +37,8 @@
 }
 
 .dropdown-content a:hover {
-  background-color: #007F73;
-  color: #FFC700;
+  background-color: #FFC700;
+  color: #007F73;
 }
 
 .dropdown-content a:focus {
