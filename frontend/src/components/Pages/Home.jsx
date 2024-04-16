@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import WelcomeText from "./Subpage/WelcomeText";
+import Options from "../menu/Options";
 <link rel="preconnect" href="https://fonts.googleapis.com"></link>;
 // import ParticleRing from "./Subpage/ParticleRing";
 const images = [
@@ -26,6 +27,9 @@ export const Home = () => {
   };
   return (
     <>
+      <div className="dragable-dropdown">
+        <Options />
+      </div>
       <div
         className="container"
         style={{
@@ -117,7 +121,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-
       <div
         className="first_main"
         style={{
@@ -158,7 +161,6 @@ export const Home = () => {
           </h1>
         </div>
       </div>
-
       {/*
       <div className="second_main">
         <ParticleRing />

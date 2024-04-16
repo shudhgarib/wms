@@ -19,7 +19,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
 // list start
-require("./config/dbConnection");
+
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "wms",
+});
 
 app.get("/", (re, res) => {
   return res.json("from backend side");

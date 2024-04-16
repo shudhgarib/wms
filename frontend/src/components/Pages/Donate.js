@@ -40,43 +40,10 @@ export const Donate = () => {
                 name="username"
                 className="form-control"
                 id="username"
-                placeholder="Username"
+                placeholder="Full Name"
                 required
               />
             </div>
-          </div>
-          <div className="Inputs">
-            {/*start registration code */}
-            {action === "Register" ? (
-              <div className={styles.input_box}>
-                <input
-                  type="text"
-                  name="fName"
-                  className="form-control"
-                  id="fName"
-                  placeholder="Enter First Name"
-                  required
-                />
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
-          <div className="Inputs">
-            {action === "Register" ? (
-              <div className={styles.input_box}>
-                <input
-                  type="text"
-                  name="lName"
-                  className="form-control"
-                  id="lName"
-                  placeholder="Last Name"
-                  required
-                />
-              </div>
-            ) : (
-              <div></div>
-            )}
           </div>
           <div className="Inputs">
             {action === "Register" ? (
@@ -115,11 +82,11 @@ export const Donate = () => {
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
-                  type="text"
-                  name="details"
+                  type="file"
+                  name="imageUpload"
                   className="form-control"
-                  id="details"
-                  placeholder="Address"
+                  id="imageUpload"
+                  placeholder="Upload image"
                   required
                 />
               </div>

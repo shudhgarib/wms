@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
-
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Donate from "./components/Pages/Donate";
 import Home from "./components/Pages/Home";
