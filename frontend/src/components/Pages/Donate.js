@@ -62,6 +62,32 @@ export const Donate = () => {
       });
   };
 
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    // make a fetch request to the server
+    fetch("http://localhost:8081/api/forget-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // check if the response is successful
+        if (data.success) {
+          // redirect the user to the dashboard
+          alert("Password reset link has been sent to your email")
+        } else {
+          // show an error message
+          alert(data.message);
+        }
+      });
+  };
+
   return (
     <>
       <div
@@ -88,19 +114,21 @@ export const Donate = () => {
               }}
             />
           </h3>
-          <div className="Inputs">
-            <div className={styles.input_box}>
-              <input
-                type="text"
-                name="username"
-                className="form-control"
-                id="username"
-                placeholder="Full Name"
-                required
-                onChange={(e) => setUsername(e.target.value)}
-              />
+          {action === "Register" &&
+            <div className="Inputs">
+              <div className={styles.input_box}>
+                <input
+                  type="text"
+                  name="username"
+                  className="form-control"
+                  id="username"
+                  placeholder="Full Name"
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
+          }
           <div className="Inputs">
             {/*start registration code */}
             <input type="text" name="action" value={action} style={{
@@ -140,7 +168,7 @@ export const Donate = () => {
             )}
           </div>
           <div className="Inputs">
-            {action === "Register" ? (
+            {action === "Register" || action==="Login" || action==="Forgot Password"? (
               <div className={styles.input_box}>
                 <input
                   type="email"
@@ -210,30 +238,32 @@ export const Donate = () => {
             )}
           </div>
           {/*end forgot code */}
-          <div className="Inputs">
-            <div className={styles.input_box}>
-              <input
-                type={passwordVisible ? "text" : "password"}
-                name="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <img
-                className={styles.eyeicon}
-                src={
-                  passwordVisible
-                    ? "../assets/images/sun.webp"
-                    : "../assets/images/sun-close-eye.png"
-                }
-                id="eyeicon"
-                onClick={togglePasswordVisibility}
-                alt="Toggle Password Visibility"
-              />
+          {action !== "Forgot" &&
+            <div className="Inputs">
+              <div className={styles.input_box}>
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  name="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Password"
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <img
+                  className={styles.eyeicon}
+                  src={
+                    passwordVisible
+                      ? "../assets/images/sun.webp"
+                      : "../assets/images/sun-close-eye.png"
+                  }
+                  id="eyeicon"
+                  onClick={togglePasswordVisibility}
+                  alt="Toggle Password Visibility"
+                />
+              </div>
             </div>
-          </div>
+          }
           <div
             className="Inputs"
             style={{
@@ -242,6 +272,7 @@ export const Donate = () => {
             {action === "Register" ? (
               <div></div>
             ) : (
+              action !== "Forgot" && 
               <div
                 className={`${
                   styles.forgot_password
@@ -252,6 +283,24 @@ export const Donate = () => {
                 Forgot password?
               </div>
             )}
+            {
+              action === "Forgot" && (
+                <button
+                  type="submit"
+                  className={
+                    `${styles.submit}`
+                  }
+                  style={{
+                    marginLeft: "15px",
+                    marginTop: "10px"
+                  }}
+                  onClick={(e) => {
+                    handleForgotPassword(e);
+                  }}>
+                  Submit
+                </button>
+              )
+            }
           </div>
           <div
             className={`${

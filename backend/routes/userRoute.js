@@ -45,7 +45,6 @@ router.post("/login", loginValidation, userController.login);
 router.get("/get-user", isAuthorize, userController.getUser);
 router.post(
   "/forget-password",
-  forgetValidation,
   userController.forgetPassword
 );
 
@@ -55,5 +54,10 @@ router.post(
   updateProfileValidation,
   isAuthorize,
   userController.updateProfile
+);
+
+router.get(
+  "/reset-password",
+  userController.resetPasswordLoad
 );
 module.exports = router;
