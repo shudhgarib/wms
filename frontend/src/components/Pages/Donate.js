@@ -95,7 +95,7 @@ export const Donate = () => {
                 name="username"
                 className="form-control"
                 id="username"
-                placeholder="Username"
+                placeholder="Full Name"
                 required
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -174,23 +174,22 @@ export const Donate = () => {
               <div></div>
             )}
           </div>{" "}
-          <div className="Inputs">
+          {/* <div className="Inputs">
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
-                  type="text"
-                  name="details"
+                  type="file"
+                  name="imageUpload"
                   className="form-control"
-                  id="details"
-                  placeholder="Address"
+                  id="imageUpload"
+                  placeholder="Upload image"
                   required
-                  onChange={(e) => setDetails(e.target.value)}
                 />
               </div>
             ) : (
               <div></div>
             )}
-          </div>
+          </div> */}
           {/*end registration code */}
           {/*start forgot code */}
           <div className="Inputs">

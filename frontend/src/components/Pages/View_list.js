@@ -13,10 +13,11 @@ const View_list = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Filter data based on the search query
+  // search bar code start
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  // search bar code end
 
   return (
     <>
