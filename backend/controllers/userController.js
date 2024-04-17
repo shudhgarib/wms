@@ -22,6 +22,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const register = (req, res) => {
+  console.log(req.body);
   if(req.body.action === "Register"){
     db.query(
       `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
@@ -41,7 +42,7 @@ const register = (req, res) => {
             } else {
               db.query(
                 `INSERT INTO users (name , email , password ,image) VALUES ('${
-                  req.body.fname + " " + req.body.lname
+                  req.body.username
                 }',${db.escape(req.body.email)},${db.escape(hash)},'images/empty');`,
                 (err, result) => {
                   if (err) {
@@ -54,11 +55,11 @@ const register = (req, res) => {
                   const randomToken = generate_token(32)
                   let content =
                     "<p>Hi " +
-                    req.body.name +
+                    req.body.username +
                     ', Please <a href="http://127.0.0.1:8081/mail-verification?token=' +
                     randomToken +
                     '"> Verify </a> Your Mail.';
-                  // sendMail(req.body.email, mailSubject, content);
+                  sendMail(req.body.email, mailSubject, content);
 
                   db.query(
                     "UPDATE users set token=? where email=?",
@@ -97,7 +98,7 @@ const verifyMail = (req, res) => {
       }
       if (result.length > 0) {
         db.query(`
-     UPDATE users SET token = null, is_verified = 1 WHERE id = '${result[0].id}'
+     UPDATE users SET token = null, is_verified = 1 WHERE email = '${result[0].email}'
      `);
         return res.render("mailverification", {
           message: "Mail verified successfully!",
@@ -180,11 +181,11 @@ const getUser = (req, res) => {
 };
 
 const forgetPassword = (req, res) => {
-  const errors = validationResult(req);
+  // const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    return res.status(400).json({errors: errors.array()});
-  }
+  // if (!errors.isEmpty()) {
+  //   return res.status(400).json({errors: errors.array()});
+  // }
   var email = req.body.email;
   db.query(
     "SELECT * FROM users WHERE email=? limit 1",
@@ -195,7 +196,7 @@ const forgetPassword = (req, res) => {
       }
       if (result.length > 0) {
         let mailSubject = "Forget Password";
-        const randomString = randomstring.generate();
+        const randomString = generate_token(32);
         let content =
           "<p>Hi, " +
           result[0].name +
@@ -207,7 +208,7 @@ const forgetPassword = (req, res) => {
         sendMail(email, mailSubject, content);
 
         db.query(
-          `DELETE FROM password_resets WHERE email =(${db.escape(
+          `DELETE FROM password_resets WHERE email =${db.escape(
             result[0].email
           )}`
         );
@@ -219,6 +220,7 @@ const forgetPassword = (req, res) => {
         );
 
         return res.status(200).send({
+          success: true,
           message: "Mail Sent Successfully for Reset Password!",
         });
       }
@@ -252,6 +254,7 @@ const resetPasswordLoad = (req, res) => {
               if (error) {
                 console.log(error);
               }
+              console.log(result);
               res.render("reset-password", {user: result[0]});
             }
           );
@@ -261,7 +264,7 @@ const resetPasswordLoad = (req, res) => {
       }
     );
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -279,7 +282,7 @@ const resetPassword = (req, res) => {
     db.query(`DELETE FROM password_resets WHERE email = '${req.body.email}'`);
 
     db.query(
-      `UPDATE users SET passwor= '${hash}' WHERE id = '${req.body.user_id}'`
+      `UPDATE users SET password= '${hash}' WHERE id = '${req.body.user_id}'`
     );
     return res.render("message", {message: "password reset successfully!"});
   });
