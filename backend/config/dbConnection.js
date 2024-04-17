@@ -1,4 +1,4 @@
-const {DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME} = process.env;
+const {DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT} = process.env;
 
 var mysql = require("mysql");
 var conn = mysql.createConnection({
@@ -6,6 +6,7 @@ var conn = mysql.createConnection({
   user: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
+  port: DB_PORT,
 });
 
 conn.connect(function (err) {

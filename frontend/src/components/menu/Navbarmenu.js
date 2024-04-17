@@ -176,6 +176,21 @@ const Navbarmenu = () => {
                         Admin Panel{" "}
                       </NavLink>{" "}
                     </li>
+                    {localStorage.getItem("token") !== null &&
+                      <li>
+                        <NavLink
+                          onClick={()=>{
+                            console.log(localStorage.getItem("token"));
+                            localStorage.removeItem("token");
+                            toggleClass();
+                          }}
+                          activeClassName="is-active"
+                          to={`/Pages/Donate`}>
+                          {" "}
+                          Log Out{" "}
+                        </NavLink>{" "}
+                      </li>
+                    }
                   </ul>
                 </li>
 

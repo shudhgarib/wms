@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import styles from "./Donate.module.css";
 export const Donate = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -6,10 +6,65 @@ export const Donate = () => {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+  // make states for maintaining value of each input tag
+  const [username, setUsername] = useState("");
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [details, setDetails] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      alert("You are already logged in");
+      window.location.href = "/";
+    }
+  }, [])
+
+  // make a function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // make a fetch request to the server
+    fetch("http://localhost:8081/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        fName,
+        lName,
+        email,
+        phone,
+        details,
+        password,
+        action
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // check if the response is successful
+        if (data.success) {
+          // redirect the user to the dashboard
+          window.location.href = "/";
+          // add the token to cookies
+          localStorage.setItem("token", data.token);
+        } else {
+          if(data.msg==="the user has been registered with us!"){
+            setAction("Login");
+            alert("User Registered Successfully, Please Login")
+          }
+          // show an error message
+          alert(data.msg);
+        }
+      });
+  };
 
   return (
     <>
-      <form
+      <div
         action=""
         method="post"
         className={styles.form}
@@ -42,11 +97,15 @@ export const Donate = () => {
                 id="username"
                 placeholder="Username"
                 required
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
           </div>
           <div className="Inputs">
             {/*start registration code */}
+            <input type="text" name="action" value={action} style={{
+              display: "none"
+            }} />
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
@@ -56,6 +115,7 @@ export const Donate = () => {
                   id="fName"
                   placeholder="Enter First Name"
                   required
+                  onChange={(e) => setFName(e.target.value)}
                 />
               </div>
             ) : (
@@ -72,6 +132,7 @@ export const Donate = () => {
                   id="lName"
                   placeholder="Last Name"
                   required
+                  onChange={(e) => setLName(e.target.value)}
                 />
               </div>
             ) : (
@@ -88,6 +149,7 @@ export const Donate = () => {
                   id="email"
                   placeholder="Enter Email"
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             ) : (
@@ -105,6 +167,7 @@ export const Donate = () => {
                   placeholder="Enter Phone Number"
                   required
                   style={{}}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
             ) : (
@@ -121,6 +184,7 @@ export const Donate = () => {
                   id="details"
                   placeholder="Address"
                   required
+                  onChange={(e) => setDetails(e.target.value)}
                 />
               </div>
             ) : (
@@ -139,6 +203,7 @@ export const Donate = () => {
                   id="email"
                   placeholder="Enter Registered Email..."
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             ) : (
@@ -155,6 +220,7 @@ export const Donate = () => {
                 id="password"
                 placeholder="Password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
               <img
                 className={styles.eyeicon}
@@ -192,31 +258,33 @@ export const Donate = () => {
             className={`${
               styles.submit_container
             } ${"animate__animated animate__slideInUp"}`}>
-            <div
+            <button
+              type="submit"
               className={
                 action === "Login"
                   ? `${styles.submit} && ${styles.gray}`
                   : `${styles.submit}`
               }
-              onClick={() => {
-                setAction("Register");
+              onClick={(e) => {
+                action === "Register" ? handleSubmit(e) : setAction("Register");
               }}>
               Register
-            </div>
-            <div
+            </button>
+            <button
+              type="submit"
               className={
                 action === "Register"
                   ? `${styles.submit} &&  ${styles.gray}`
                   : `${styles.submit}`
               }
-              onClick={() => {
-                setAction("Login");
+              onClick={(e) => {
+                action === "Login" ? handleSubmit(e) : setAction("Login");
               }}>
               Login
-            </div>
+            </button>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };

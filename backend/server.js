@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors());
@@ -46,16 +46,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// app.listen(8081, () => {
-//   console.log("server is running on port 8081");
-// });
-
-var http = require("http");
-
-http
-  .createServer(function (req, res) {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end("Hello World!");
-    console.log("server is running on port 8081");
-  })
-  .listen(8081);
+app.listen(8081, () => {
+  console.log("server is running on port 8081");
+});

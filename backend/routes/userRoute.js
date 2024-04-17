@@ -37,7 +37,6 @@ const {isAuthorize} = require("../middleware/auth");
 
 router.post(
   "/register",
-  upload.single("image"),
   signUpValidation,
   userController.register
 );
