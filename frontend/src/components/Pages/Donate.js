@@ -174,7 +174,7 @@ export const Donate = () => {
               <div></div>
             )}
           </div>{" "}
-          {/* <div className="Inputs">
+          <div className="Inputs">
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
@@ -189,7 +189,7 @@ export const Donate = () => {
             ) : (
               <div></div>
             )}
-          </div> */}
+          </div>
           {/*end registration code */}
           {/*start forgot code */}
           <div className="Inputs">
