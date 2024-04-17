@@ -180,7 +180,8 @@ function Options() {
         className="dropdown-list"
         style={{
           display: "flex",
-          overflow: "auto",
+          overflowX: "auto",
+          overflowY: "hidden",
         }}>
         {dropdownData.map((dropdown, index) => (
           <div className="Item" style={{}}>

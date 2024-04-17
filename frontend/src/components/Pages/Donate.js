@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import styles from "./Donate.module.css";
 export const Donate = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -16,11 +16,11 @@ export const Donate = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if (localStorage.getItem("token")) {
       alert("You are already logged in");
       window.location.href = "/";
     }
-  }, [])
+  }, []);
 
   // make a function to handle form submission
   const handleSubmit = (e) => {
@@ -39,7 +39,7 @@ export const Donate = () => {
         phone,
         details,
         password,
-        action
+        action,
       }),
     })
       .then((res) => res.json())
@@ -48,13 +48,13 @@ export const Donate = () => {
         // check if the response is successful
         if (data.success) {
           // redirect the user to the dashboard
-          window.location.href = "/";
+          window.location.href = "/Welcome";
           // add the token to cookies
           localStorage.setItem("token", data.token);
         } else {
-          if(data.msg==="the user has been registered with us!"){
+          if (data.msg === "the user has been registered with us!") {
             setAction("Login");
-            alert("User Registered Successfully, Please Login")
+            alert("User Registered Successfully, Please Login");
           }
           // show an error message
           alert(data.msg);
@@ -103,9 +103,14 @@ export const Donate = () => {
           </div>
           <div className="Inputs">
             {/*start registration code */}
-            <input type="text" name="action" value={action} style={{
-              display: "none"
-            }} />
+            <input
+              type="text"
+              name="action"
+              value={action}
+              style={{
+                display: "none",
+              }}
+            />
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
