@@ -17,6 +17,7 @@ import {NextGallery} from "./components/Pages/NextGallery";
 import TowK24 from "./components/Pages/Subpage/TowK24";
 import TowK23 from "./components/Pages/Subpage/TowK23";
 import TowK22 from "./components/Pages/Subpage/TowK22";
+import Welcome from "./components/Pages/Welcome";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route exact path="/Pages/Admin" element={<Admin />} />
             <Route exact path="/Pages/Gallery" element={<Gallery />} />
             <Route exact path="/NextGallery" element={<NextGallery />} />
+            <Route exact path="/Welcome" element={<Welcome />} />
             <Route exact path="/TowK24" element={<TowK24 />} />
             <Route exact path="/TowK23" element={<TowK23 />} />
             <Route exact path="/TowK22" element={<TowK22 />} />

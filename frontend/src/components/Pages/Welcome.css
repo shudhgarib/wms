@@ -1,0 +1,28 @@
+.account {
+  max-width: 190px;
+  border: 1px solid #ddd;
+  display: flex;
+  overflow-x: auto;
+  border: 5px solid #4CCD99;
+  border-radius: 10px;
+  justify-content: flex-start;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.account::-webkit-scrollbar {
+  width: 1;
+}
+
+.account .item {
+  border: 5px solid #4CCD99;
+  border-radius: 10px;
+  margin: 10px;
+  min-width: 70px;
+  height: 70px;
+  line-height: center;
+  text-align: center;
+  background-color: #ddd;
+}

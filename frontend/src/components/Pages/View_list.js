@@ -13,11 +13,19 @@ const View_list = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // search bar code start
+  // Function to format date as "dd-mm-yyyy"
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  // Filter data based on search query
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  // search bar code end
 
   return (
     <>
@@ -25,6 +33,7 @@ const View_list = () => {
         className="container"
         style={{
           marginTop: "50px",
+          marginBottom: "50px",
           fontFamily: "Poppins",
         }}>
         <div
@@ -35,7 +44,7 @@ const View_list = () => {
             justifyContent: "space-between",
             borderRadius: "20px 20px 0px 0px",
           }}>
-          {/* dropdown start */}
+          {/* Dropdown for selecting year */}
           <div className="dropdown">
             <Dropdown>
               <Dropdown.Toggle
@@ -62,9 +71,8 @@ const View_list = () => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          {/* dropdown end */}
-          {/* Search bar start*/}
 
+          {/* Search bar */}
           <div className="searchbar">
             <input
               type="text"
@@ -80,9 +88,8 @@ const View_list = () => {
             />
           </div>
         </div>
-        {/* Search bar end */}
 
-        {/* Table start*/}
+        {/* Table for displaying data */}
         <Table
           striped
           bordered
@@ -100,8 +107,10 @@ const View_list = () => {
             </tr>
           </thead>
           <tbody>
+            {/* Map through filtered data to render rows */}
             {filteredData.map((d, i) => (
               <tr key={i}>
+                {/* Render columns for each data item */}
                 <td className="animate__animated animate__fadeInDownBig">
                   {d.name}
                 </td>
@@ -111,14 +120,14 @@ const View_list = () => {
                 <td className="animate__animated animate__fadeInDownBig">
                   {d.place}
                 </td>
+                {/* Format date column */}
                 <td className="animate__animated animate__fadeInUpBig">
-                  {d.date}
+                  {formatDate(d.date)}
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
-        {/* Table end*/}
       </div>
     </>
   );
