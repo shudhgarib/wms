@@ -1,12 +1,34 @@
-import React from "react";
-import {useState} from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import "./Welcome.css";
+
 function Welcome() {
-  const BankName = "XYZ Bank";
-  const AccNo = "1234567890";
-  const ifsc = "ABCD0123456";
-  const AccName = "John Doe";
+  // Dummy array of bank data
+  const bankDataArray = [
+    {
+      id: 1,
+      BankName: "PUNJAB NATIONAL BANK",
+      AccNo: "4647000100122904",
+      ifsc: "PUNB0464700",
+      AccName: "RAJAN PATEL",
+    },
+    {
+      id: 2,
+      BankName: "STATE BANK OF INDIA",
+      AccNo: "1245222155422835",
+      ifsc: "PUNB0464700",
+      AccName: "KAUSTUBH PATEL",
+    },
+    {
+      id: 3,
+      BankName: "PUNJAB NATIONAL BANK",
+      AccNo: "4647001700118258",
+      ifsc: "PUNB0464700",
+      AccName: "KAUSTUBH PATEL",
+    },
+  ];
+
+  const [bankData, setBankData] = useState(bankDataArray[0]); // Initial bank data
 
   const [copiedText, setCopiedText] = useState(""); // State to store the copied text
 
@@ -15,30 +37,28 @@ function Welcome() {
     setCopiedText(text); // Update state with copied text
   };
 
+  const handleItemClick = (item) => {
+    setBankData(item); // Update bank data when an item is clicked
+  };
+
   return (
     <>
       <div container className="main my-5 mx-5">
-        <div className="account">
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
-          </div>
-          <div className="item">
-            <img src="/assets/images/bank-account.png"></img>
+        <div
+          className="account-section "
+          style={{display: "flex", justifyContent: "center"}}>
+          <div className="account ">
+            {bankDataArray.map((item) => (
+              <div
+                key={item.id}
+                className="item animate__animated animate__slideInLeft"
+                onClick={() => handleItemClick(item)}>
+                <img
+                  src="/assets/images/bank-account.png"
+                  alt={item.BankName}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -47,12 +67,11 @@ function Welcome() {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: "110px",
-
+            marginTop: "10px",
             color: "white",
           }}>
           <div
-            className="left"
+            className="left "
             style={{
               backgroundColor: "#4CCD99",
               borderRadius: "10px 0 0 10px",
@@ -61,10 +80,11 @@ function Welcome() {
               justifyContent: "space-around",
               textAlign: "left",
               padding: "20px",
-              // margin: "0px 10px",
+              overflow: "hidden",
             }}>
-            <label>
-              Bank Name:{BankName}
+            <label className="animate__animated animate__slideInLeft">
+              <span>Bank Name : </span>
+              {bankData.BankName}
               <span
                 style={{
                   cursor: "pointer",
@@ -72,19 +92,21 @@ function Welcome() {
                   border: "1px solid #fff",
                   borderRadius: "10px",
                   marginLeft: "5px",
+                  float: "right",
+                  color: "red",
                 }}>
                 <img
                   width="14"
                   height="14"
                   src="https://img.icons8.com/material-rounded/24/copy.png"
                   alt="copy"
-                  onClick={() => handleCopy(BankName)} // Copy Bank Name when clicked
+                  onClick={() => handleCopy(bankData.BankName)} // Copy Bank Name when clicked
                 />
               </span>{" "}
             </label>
 
-            <label>
-              A/C NO:{AccNo}
+            <label className="animate__animated animate__slideInLeft">
+              <span>A/C NO : </span> {bankData.AccNo}
               <span
                 style={{
                   cursor: "pointer",
@@ -92,19 +114,20 @@ function Welcome() {
                   border: "1px solid #fff",
                   borderRadius: "10px",
                   marginLeft: "5px",
+                  float: "right",
                 }}>
                 <img
                   width="14"
                   height="14"
                   src="https://img.icons8.com/material-rounded/24/copy.png"
                   alt="copy"
-                  onClick={() => handleCopy(AccNo)} // Copy Account Number when clicked
+                  onClick={() => handleCopy(bankData.AccNo)} // Copy Account Number when clicked
                 />
               </span>{" "}
             </label>
 
-            <label>
-              IFCS Code:{ifsc}
+            <label className="animate__animated animate__slideInLeft">
+              <span>IFCS Code : </span> {bankData.ifsc}
               <span
                 style={{
                   cursor: "pointer",
@@ -112,19 +135,20 @@ function Welcome() {
                   border: "1px solid #fff",
                   borderRadius: "10px",
                   marginLeft: "5px",
+                  float: "right",
                 }}>
                 <img
                   width="14"
                   height="14"
                   src="https://img.icons8.com/material-rounded/24/copy.png"
                   alt="copy"
-                  onClick={() => handleCopy(ifsc)} // Copy IFSC Code when clicked
+                  onClick={() => handleCopy(bankData.ifsc)} // Copy IFSC Code when clicked
                 />
               </span>{" "}
             </label>
 
-            <label>
-              Account Name:{AccName}
+            <label className="animate__animated animate__slideInLeft">
+              <span>Account Name : </span> {bankData.AccName}
               <span
                 style={{
                   cursor: "pointer",
@@ -132,24 +156,30 @@ function Welcome() {
                   border: "1px solid #fff",
                   borderRadius: "10px",
                   marginLeft: "5px",
+                  float: "right",
                 }}>
                 <img
                   width="14"
                   height="14"
                   src="https://img.icons8.com/material-rounded/24/copy.png"
                   alt="copy"
-                  onClick={() => handleCopy(AccName)} // Copy Account Name when clicked
+                  onClick={() => handleCopy(bankData.AccName)} // Copy Account Name when clicked
                 />
               </span>{" "}
             </label>
           </div>
           <div
-            className="section-1"
+            className="section-1 "
             style={{
               backgroundColor: "#4CCD99",
               border: "1px solid #4CCD99",
               borderRadius: "0px 10px 10px 0",
             }}>
+            <h5
+              className="right animate__animated animate__zoomIn"
+              style={{float: "inherit"}}>
+              Welcome
+            </h5>
             <div
               className="right"
               style={{
@@ -163,8 +193,10 @@ function Welcome() {
                 margin: "10px 15px",
                 border: "2px solid #4CCD99",
                 borderRadius: "10px",
+                overflow: "hidden",
               }}>
               <label
+                className="animate__animated animate__slideInRight "
                 style={{
                   marginTop: "5px",
                 }}>
@@ -180,7 +212,7 @@ function Welcome() {
                   color: "black",
                 }}
               />
-              <label>
+              <label className="animate__animated animate__slideInRight ">
                 Upload Your Payment Proof <sup style={{color: "red"}}>*</sup>
               </label>
               <input
@@ -192,7 +224,7 @@ function Welcome() {
                   color: "black",
                 }}
               />
-              <label>
+              <label className="animate__animated animate__slideInRight ">
                 Amount <sup style={{color: "red"}}>*</sup>
               </label>
               <input
@@ -208,19 +240,25 @@ function Welcome() {
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check
                   type="checkbox"
-                  label="I have read and agree with "
+                  label={
+                    <>
+                      I have read and agree with{" "}
+                      <a
+                        href="#"
+                        style={{
+                          textDecoration: "none",
+                          color: "blue",
+                        }}>
+                        {" "}
+                        the terms of payment and donate policy.
+                      </a>
+                    </>
+                  }
                   required
                 />
-                <a
-                  href="/"
-                  style={{
-                    textDecoration: "none",
-                  }}>
-                  {" "}
-                  the terms of payment and donate policy.
-                </a>
               </Form.Group>
               <button
+                className="animate__animated animate__slideInUp"
                 type="submit"
                 style={{
                   margin: "auto",

@@ -6,10 +6,7 @@
   border: 5px solid #4CCD99;
   border-radius: 10px;
   justify-content: flex-start;
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
 }
 
 .account::-webkit-scrollbar {
@@ -17,12 +14,43 @@
 }
 
 .account .item {
-  border: 5px solid #4CCD99;
-  border-radius: 10px;
+  border: 3px solid #4CCD99;
+  border-radius: 50px;
   margin: 10px;
   min-width: 70px;
   height: 70px;
   line-height: center;
   text-align: center;
   background-color: #ddd;
+  padding: 3px;
+}
+
+.right input {
+  max-width: 400px;
+}
+
+.right {
+  max-width: 400px;
+}
+
+@media only screen and (max-width: 500px) {
+
+  .right {
+    max-width: 300px;
+  }
+
+  .right input {
+    max-width: 250px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+
+  .right {
+    max-width: 200px;
+  }
+
+  .right input {
+    max-width: 150px;
+  }
 }
