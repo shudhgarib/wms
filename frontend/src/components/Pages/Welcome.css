@@ -25,6 +25,10 @@
   padding: 3px;
 }
 
+span {
+  color: #ffffff;
+}
+
 .right input {
   max-width: 400px;
 }

@@ -262,7 +262,7 @@ function Welcome() {
                 type="submit"
                 style={{
                   margin: "auto",
-                  padding: "5px",
+                  padding: "6px 8px",
                   border: "3px solid #007F73",
                   borderRadius: "50px",
                   color: "white",

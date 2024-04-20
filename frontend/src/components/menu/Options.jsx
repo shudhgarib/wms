@@ -1,32 +1,52 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import "./Options.css";
 
 function CustomDropdown({title, items}) {
   return (
-    <Dropdown
-      data-bs-theme="dark"
-      style={{
-        margin: "15px",
-      }}>
-      <Dropdown.Toggle
-        id={`dropdown-button-${title}`}
-        variant="secondary"
+    <div className="list">
+      <Dropdown
         style={{
-          backgroundColor: "#007F73",
-          border: "3px solid #4CCD99",
-          borderRadius: "50px",
+          margin: "15px",
         }}>
-        {title}
-      </Dropdown.Toggle>
+        <Dropdown.Toggle
+          id={`dropdown-button-${title}`}
+          variant="secondary"
+          style={{
+            backgroundColor: "#4CCD99",
+            border: "3px solid #007F73",
+            borderRadius: "50px",
+          }}>
+          {title}
+        </Dropdown.Toggle>
 
-      <Dropdown.Menu style={{textAlign: "center"}}>
-        {items.map((item, index) => (
-          <Dropdown.Item key={index} href={item.href} active={item.active}>
-            {item.label}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
+        <Dropdown.Menu
+          style={{
+            textAlign: "center",
+            background: "transparent",
+            border: "none",
+            padding: "10px",
+          }}>
+          {items.map((item, index) => (
+            <div class="section">
+              <Dropdown.Item
+                key={index}
+                href={item.href}
+                active={item.active}
+                style={{
+                  backgroundColor: "#4CCD99",
+                  border: "3px solid #007F73",
+                  borderRadius: "50px",
+                  maxWidth: "100px",
+                  color: "white",
+                }}>
+                {item.label}
+              </Dropdown.Item>
+            </div>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
   );
 }
 
@@ -180,8 +200,6 @@ function Options() {
         className="dropdown-list"
         style={{
           display: "flex",
-          overflowX: "auto",
-          overflowY: "hidden",
         }}>
         {dropdownData.map((dropdown, index) => (
           <div className="Item" style={{}}>

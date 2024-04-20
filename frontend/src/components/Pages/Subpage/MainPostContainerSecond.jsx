@@ -72,180 +72,433 @@ const MainPostContainerSecond = ({year}) => {
 
   return (
     <>
-      {/* 2024 code start */}
-
-      {year == "2024" && (
-        <div className="main">
-          <div className="container">
-            <div
-              className="main-content"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}>
-              {images2024.map((image2024) => (
-                <div
-                  className="content"
-                  key={image2024.id}
-                  style={{
-                    padding: "5px",
-                  }}>
-                  <img
+      <div className="hero" style={{marginBottom: "20px"}}>
+        {/* 2024 code start */}
+        {year == "2024" && (
+          <div className="main">
+            <div className="container">
+              <div
+                className="main-content"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}>
+                {images2024.map((image2024) => (
+                  <div
+                    className="content"
+                    key={image2024.id}
                     style={{
-                      border: "5px solid #e7e07a",
-                      width: "100%",
-                      borderRadius: "10px",
-                      boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
-                    }}
-                    className="animate__animated animate__zoomIn"
-                    src={image2024.src}
-                    alt={image2024.caption}
-                    onClick={() => handleImageClick2024(image2024)}
-                  />
-                  <p
-                    className="animate__animated animate__rotateInUpRight"
-                    style={{
-                      marginTop: "10px",
-                      color: "#FFF455",
+                      padding: "5px",
                     }}>
-                    {image2024.caption}
-                  </p>
-                </div>
-              ))}
-            </div>
-            {selectedImage2024 && (
-              <div>
-                <div>
-                  <img
-                    src={selectedImage2024.src}
-                    alt={selectedImage2024.caption}
-                  />
-                  <p>{selectedImage2024.caption}</p>
-                  <button onClick={() => setSelectedImage2024(null)}>
-                    Close
-                  </button>
-                </div>
+                    <img
+                      style={{
+                        border: "5px solid #e7e07a",
+                        width: "100%",
+                        borderRadius: "10px",
+                        boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
+                        cursor: "pointer",
+                      }}
+                      className="animate__animated animate__zoomIn"
+                      src={image2024.src}
+                      alt={image2024.caption}
+                      onClick={() => handleImageClick2024(image2024)}
+                    />
+                    <p
+                      className="animate__animated animate__rotateInUpRight"
+                      style={{
+                        marginTop: "10px",
+                        color: "#FFF455",
+                      }}>
+                      {image2024.caption}
+                    </p>
+                  </div>
+                ))}
               </div>
-            )}
-          </div>
-        </div>
-      )}
-      {/* 2023 code start  */}
-
-      {year == "2023" && (
-        <div className="main">
-          <div className="container">
-            <div
-              className="main-content"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}>
-              {images2023.map((image2023) => (
+              {/* committee member details */}
+              {selectedImage2024 && (
                 <div
-                  className="content"
-                  key={image2023.id}
+                  className="profile"
                   style={{
-                    padding: "5px",
+                    display: "flex",
+                    justifyContent: "center",
                   }}>
-                  <img
+                  <div
                     style={{
-                      border: "5px solid #e7e07a",
-                      width: "100%",
-                      borderRadius: "10px",
-                      boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
-                    }}
-                    className="animate__animated animate__zoomIn"
-                    src={image2023.src}
-                    alt={image2023.caption}
-                    onClick={() => handleImageClick2023(image2023)}
-                  />
-                  <p
-                    className="animate__animated animate__rotateInUpRight"
-                    style={{
-                      marginTop: "10px",
-                      color: "#FFF455",
+                      border: "3px solid #FFF455",
+                      borderRadius: "10px 0px 0 10px ",
+                      padding: "10px",
+                      margin: "10px 0",
+                      backgroundColor: "transparent",
                     }}>
-                    {image2023.caption}
-                  </p>
-                </div>
-              ))}
-            </div>
-            {selectedImage2023 && (
-              <div>
-                <div>
-                  <img
-                    src={selectedImage2023.src}
-                    alt={selectedImage2023.caption}
-                  />
-                  <p>{selectedImage2023.caption}</p>
-                  <button onClick={() => setSelectedImage2023(null)}>
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-      {/* 2022 code start  */}
+                    <img
+                      src={selectedImage2024.src}
+                      alt={selectedImage2024.caption}
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        border: "3px solid #FFF455",
+                        borderRadius: "10px",
+                        backgroundColor: "transparent",
+                      }}
+                    />
+                    <p
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}>
+                      {selectedImage2024.caption}
+                    </p>
+                    <button
+                      onClick={() => setSelectedImage2024(null)}
+                      style={{
+                        padding: "5px",
+                        border: "3px solid transparent",
+                        borderRadius: "10px",
+                        background: "red",
+                        color: "black",
+                        width: "100%",
+                        textAlign: "center",
+                        padding: "10px",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                      }}>
+                      Close
+                    </button>
+                  </div>
 
-      {year == "2022" && (
-        <div className="main">
-          <div className="container">
-            <div
-              className="main-content"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}>
-              {images2022.map((image2022) => (
-                <div
-                  className="content"
-                  key={image2022.id}
-                  style={{
-                    padding: "5px",
-                  }}>
-                  <img
+                  {/* social media handles */}
+                  <div
+                    className="social"
                     style={{
-                      border: "5px solid #e7e07a",
-                      width: "100%",
-                      borderRadius: "10px",
-                      boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
-                    }}
-                    className="animate__animated animate__zoomIn"
-                    src={image2022.src}
-                    alt={image2022.caption}
-                    onClick={() => handleImageClick2022(image2022)}
-                  />
-                  <p
-                    className="animate__animated animate__rotateInUpRight"
-                    style={{
-                      marginTop: "10px",
-                      color: "#FFF455",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                      border: "5px solid #FFF455",
+                      borderRadius: "0 10px 10px 0",
+                      padding: "15px",
+                      margin: "10px 0",
                     }}>
-                    {image2022.caption}
-                  </p>
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/whatsapp--v1.png"
+                        alt="whatsapp--v1"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/facebook-new.png"
+                        alt="facebook-new"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/instagram-new--v1.png"
+                        alt="instagram-new--v1"
+                      />
+                    </a>
+                  </div>
                 </div>
-              ))}
+              )}
             </div>
-            {selectedImage2022 && (
-              <div>
-                <div>
-                  <img
-                    src={selectedImage2022.src}
-                    alt={selectedImage2022.caption}
-                  />
-                  <p>{selectedImage2022.caption}</p>
-                  <button onClick={() => setSelectedImage2022(null)}>
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
-        </div>
-      )}
+        )}
+        {/* 2023 code start  */}
+
+        {year == "2023" && (
+          <div className="main">
+            <div className="container">
+              <div
+                className="main-content"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}>
+                {images2023.map((image2023) => (
+                  <div
+                    className="content"
+                    key={image2023.id}
+                    style={{
+                      padding: "5px",
+                    }}>
+                    <img
+                      style={{
+                        border: "5px solid #e7e07a",
+                        width: "100%",
+                        borderRadius: "10px",
+                        boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
+                        cursor: "pointer",
+                      }}
+                      className="animate__animated animate__zoomIn"
+                      src={image2023.src}
+                      alt={image2023.caption}
+                      onClick={() => handleImageClick2023(image2023)}
+                    />
+                    <p
+                      className="animate__animated animate__rotateInUpRight"
+                      style={{
+                        marginTop: "10px",
+                        color: "#FFF455",
+                      }}>
+                      {image2023.caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {/* committee member details */}
+              {selectedImage2023 && (
+                <div
+                  className="profile"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  <div
+                    style={{
+                      border: "3px solid #FFF455",
+                      borderRadius: "10px 0px 0 10px ",
+                      padding: "10px",
+                      margin: "10px 0",
+                      backgroundColor: "transparent",
+                    }}>
+                    <img
+                      src={selectedImage2023.src}
+                      alt={selectedImage2023.caption}
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        border: "3px solid #FFF455",
+                        borderRadius: "10px",
+                        backgroundColor: "transparent",
+                      }}
+                    />
+                    <p
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}>
+                      {selectedImage2023.caption}
+                    </p>
+                    <button
+                      onClick={() => setSelectedImage2023(null)}
+                      style={{
+                        padding: "5px",
+                        border: "3px solid transparent",
+                        borderRadius: "10px",
+                        background: "red",
+                        color: "black",
+                        width: "100%",
+                        textAlign: "center",
+                        padding: "10px",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                      }}>
+                      Close
+                    </button>
+                  </div>
+
+                  {/* social media handles */}
+                  <div
+                    className="social"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                      border: "5px solid #FFF455",
+                      borderRadius: "0 10px 10px 0",
+                      padding: "15px",
+                      margin: "10px 0",
+                    }}>
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/whatsapp--v1.png"
+                        alt="whatsapp--v1"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/facebook-new.png"
+                        alt="facebook-new"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/instagram-new--v1.png"
+                        alt="instagram-new--v1"
+                      />
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        {/* 2022 code start  */}
+
+        {year == "2022" && (
+          <div className="main">
+            <div className="container">
+              <div
+                className="main-content"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}>
+                {images2022.map((image2022) => (
+                  <div
+                    className="content"
+                    key={image2022.id}
+                    style={{
+                      padding: "5px",
+                    }}>
+                    <img
+                      style={{
+                        border: "5px solid #e7e07a",
+                        width: "100%",
+                        borderRadius: "10px",
+                        boxShadow: "-2px -2px 10px #4CCD99, 0 0 20px #4CCD99",
+                        cursor: "pointer",
+                      }}
+                      className="animate__animated animate__zoomIn"
+                      src={image2022.src}
+                      alt={image2022.caption}
+                      onClick={() => handleImageClick2022(image2022)}
+                    />
+                    <p
+                      className="animate__animated animate__rotateInUpRight"
+                      style={{
+                        marginTop: "10px",
+                        color: "#FFF455",
+                      }}>
+                      {image2022.caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {/* committee member details */}
+              {selectedImage2022 && (
+                <div
+                  className="profile"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  <div
+                    style={{
+                      border: "3px solid #FFF455",
+                      borderRadius: "10px 0px 0 10px ",
+                      padding: "10px",
+                      margin: "10px 0",
+                      backgroundColor: "transparent",
+                    }}>
+                    <img
+                      src={selectedImage2022.src}
+                      alt={selectedImage2022.caption}
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        border: "3px solid #FFF455",
+                        borderRadius: "10px",
+                        backgroundColor: "transparent",
+                      }}
+                    />
+                    <p
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}>
+                      {selectedImage2022.caption}
+                    </p>
+                    <button
+                      onClick={() => setSelectedImage2022(null)}
+                      style={{
+                        padding: "5px",
+                        border: "3px solid transparent",
+                        borderRadius: "10px",
+                        background: "red",
+                        color: "black",
+                        width: "100%",
+                        textAlign: "center",
+                        padding: "10px",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                      }}>
+                      Close
+                    </button>
+                  </div>
+
+                  {/* social media handles */}
+                  <div
+                    className="social"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                      border: "5px solid #FFF455",
+                      borderRadius: "0 10px 10px 0",
+                      padding: "15px",
+                      margin: "10px 0",
+                    }}>
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/whatsapp--v1.png"
+                        alt="whatsapp--v1"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/facebook-new.png"
+                        alt="facebook-new"
+                      />
+                    </a>
+
+                    <a href="google.com">
+                      {" "}
+                      <img
+                        width="50"
+                        height="50"
+                        src="https://img.icons8.com/ios/50/instagram-new--v1.png"
+                        alt="instagram-new--v1"
+                      />
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

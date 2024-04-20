@@ -71,7 +71,7 @@ export const Donate = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email
+        email,
       }),
     })
       .then((res) => res.json())
@@ -80,7 +80,7 @@ export const Donate = () => {
         // check if the response is successful
         if (data.success) {
           // redirect the user to the dashboard
-          alert("Password reset link has been sent to your email")
+          alert("Password reset link has been sent to your email");
         } else {
           // show an error message
           alert(data.message);
@@ -114,7 +114,7 @@ export const Donate = () => {
               }}
             />
           </h3>
-          {action === "Register" &&
+          {action === "Register" && (
             <div className="Inputs">
               <div className={styles.input_box}>
                 <input
@@ -128,7 +128,7 @@ export const Donate = () => {
                 />
               </div>
             </div>
-          }
+          )}
           <div className="Inputs">
             {/*start registration code */}
             <input
@@ -173,7 +173,9 @@ export const Donate = () => {
             )}
           </div>
           <div className="Inputs">
-            {action === "Register" || action==="Login" || action==="Forgot Password"? (
+            {action === "Register" ||
+            action === "Login" ||
+            action === "Forgot Password" ? (
               <div className={styles.input_box}>
                 <input
                   type="email"
@@ -243,7 +245,7 @@ export const Donate = () => {
             )}
           </div>
           {/*end forgot code */}
-          {action !== "Forgot" &&
+          {action !== "Forgot" && (
             <div className="Inputs">
               <div className={styles.input_box}>
                 <input
@@ -268,7 +270,7 @@ export const Donate = () => {
                 />
               </div>
             </div>
-          }
+          )}
           <div
             className="Inputs"
             style={{
@@ -277,35 +279,32 @@ export const Donate = () => {
             {action === "Register" ? (
               <div></div>
             ) : (
-              action !== "Forgot" && 
-              <div
-                className={`${
-                  styles.forgot_password
-                } ${"animate__animated animate__slideInLeft"}`}
-                onClick={() => {
-                  setAction("Forgot");
-                }}>
-                Forgot password?
-              </div>
-            )}
-            {
-              action === "Forgot" && (
-                <button
-                  type="submit"
-                  className={
-                    `${styles.submit}`
-                  }
-                  style={{
-                    marginLeft: "15px",
-                    marginTop: "10px"
-                  }}
-                  onClick={(e) => {
-                    handleForgotPassword(e);
+              action !== "Forgot" && (
+                <div
+                  className={`${
+                    styles.forgot_password
+                  } ${"animate__animated animate__slideInLeft"}`}
+                  onClick={() => {
+                    setAction("Forgot");
                   }}>
-                  Submit
-                </button>
+                  Forgot password?
+                </div>
               )
-            }
+            )}
+            {action === "Forgot" && (
+              <button
+                type="submit"
+                className={`${styles.submit}`}
+                style={{
+                  marginLeft: "15px",
+                  marginTop: "10px",
+                }}
+                onClick={(e) => {
+                  handleForgotPassword(e);
+                }}>
+                Submit
+              </button>
+            )}
           </div>
           <div
             className={`${

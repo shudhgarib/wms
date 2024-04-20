@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+
+.carousel img {
+  border: 5px solid white;
+  border-radius: 20px;
+}
+
+
+.carousel-indicators [data-bs-target] {
+
+  border-radius: 100%;
+  width: 5px;
+  height: 5px;
+}
