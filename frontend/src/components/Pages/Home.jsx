@@ -15,7 +15,6 @@ import slide08 from "./carousel_images/slide08.jpg";
 import slide09 from "./carousel_images/slide09.jpg";
 import slide10 from "./carousel_images/slide10.jpg";
 import slide11 from "./carousel_images/slide11.jpg";
-import "./Home.css";
 
 function Home() {
   return (

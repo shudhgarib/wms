@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./Options.css";
+import downArrow from "./img/expand.png";
+import upArrow from "./img/collapse.png";
 
 function CustomDropdown({title, items}) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="list">
+    <div
+      className="list"
+      style={{
+        margin: "5px 0",
+      }}>
       <Dropdown
+        show={isOpen}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
         style={{
           margin: "15px",
         }}>
@@ -16,7 +27,8 @@ function CustomDropdown({title, items}) {
             backgroundColor: "#4CCD99",
             border: "3px solid #007F73",
             borderRadius: "50px",
-          }}>
+          }}
+          onClick={() => setIsOpen(!isOpen)}>
           {title}
         </Dropdown.Toggle>
 
@@ -28,7 +40,7 @@ function CustomDropdown({title, items}) {
             padding: "10px",
           }}>
           {items.map((item, index) => (
-            <div class="section">
+            <div className="item-section">
               <Dropdown.Item
                 key={index}
                 href={item.href}
@@ -101,8 +113,8 @@ function Options() {
         {label: "राम नवमी", href: "#/action-3"},
         {label: "साईं पूजा", href: "#/action-4"},
       ],
-    },
-    // मालियाबाग
+
+      /** // मालियाबाग
     {
       title: "मालियाबाग",
       items: [
@@ -191,26 +203,44 @@ function Options() {
         {label: "राम नवमी", href: "#/action-3"},
         {label: "साईं पूजा", href: "#/action-4"},
       ],
+    }, */
     },
   ];
-
+  const [isListVisible, setIsListVisible] = useState(false);
   return (
     <>
       <div
         className="dropdown-list"
         style={{
           display: "flex",
+          justifyContent: "center",
         }}>
-        {dropdownData.map((dropdown, index) => (
-          <div className="Item" style={{}}>
-            <CustomDropdown
-              key={index}
-              title={dropdown.title}
-              items={dropdown.items}
-            />
-          </div>
-        ))}
+        <button
+          className="center-button"
+          onClick={() => setIsListVisible(!isListVisible)}>
+          <img
+            width="34"
+            height="34"
+            src={isListVisible ? upArrow : downArrow}
+            alt="dropdown-arrow"
+          />
+        </button>
       </div>
+
+      {isListVisible && (
+        <div
+          className="dropdown-list"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}>
+          {dropdownData.map((dropdown, index) => (
+            <div className="Item" key={index}>
+              <CustomDropdown title={dropdown.title} items={dropdown.items} />
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
