@@ -28,7 +28,7 @@ const db = mysql.createConnection({
 });
 
 app.get("/", (re, res) => {
-  return res.json("from backend side");
+  return res.json("from backend side edited");
 });
 
 app.get("/donor_list", (req, res) => {
@@ -42,18 +42,27 @@ app.get("/donor_list", (req, res) => {
 
 // donor details code start
 
-app.get("/", (req, res) => {
+app.get("/donar-details", (req, res) => {
   const sql1 = "SELECT * FROM donors_details";
   db.query(sql1, (err, data) => {
     if (err) return res.json(err);
+    console.log(data, 49);
     return res.json(data);
   });
 });
 
+// app.get("/list",(req, res)=>{
+//   const query = 'SELECT * FROM '
+// })
+
 app.post("/welcome", (req, res) => {
+  const {utrno, deposit_proof, amount, bankData} = req.body;
+  const {AccNo} = bankData;
+  const date = new Date();
+  console.log(utrno, deposit_proof, amount, AccNo, date);
   const sql1 =
-    "INSERT INTO donors_details (`utrno`,`deposit_proof`,`amount`) VALUES (?)";
-  const values = [req.body.utrno, req.body.deposit_proof, req.body.amount];
+    "INSERT INTO donors_details (`utrno`,`deposit_proof`,`amount`,`date`, `accno`) VALUES (?)";
+  const values = [utrno, deposit_proof, amount, date.toISOString(), AccNo];
   db.query(sql1, [values], (err, data) => {
     if (err) return res.json("ERROR");
     return res.json(data);

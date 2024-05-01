@@ -35,18 +35,11 @@ const userController = require("../controllers/userController");
 
 const {isAuthorize} = require("../middleware/auth");
 
-router.post(
-  "/register",
-  signUpValidation,
-  userController.register
-);
+router.post("/register", signUpValidation, userController.register);
 
 router.post("/login", loginValidation, userController.login);
 router.get("/get-user", isAuthorize, userController.getUser);
-router.post(
-  "/forget-password",
-  userController.forgetPassword
-);
+router.post("/forget-password", userController.forgetPassword);
 
 router.post(
   "/update-profile",
@@ -56,8 +49,5 @@ router.post(
   userController.updateProfile
 );
 
-router.get(
-  "/reset-password",
-  userController.resetPasswordLoad
-);
+router.get("/reset-password", userController.resetPasswordLoad);
 module.exports = router;

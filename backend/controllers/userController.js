@@ -1,19 +1,20 @@
 const {validationResult, Result, body} = require("express-validator");
 const bcrypt = require("bcryptjs");
-const Randomstring = require('crypto');
+const Randomstring = require("crypto");
 
 const db = require("../config/dbConnection");
 
 require("randomstring");
 const sendMail = require("../helpers/sendMail");
 
-function generate_token(length){
+function generate_token(length) {
   //edit the token allowed characters
-  var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-  var b = [];  
-  for (var i=0; i<length; i++) {
-      var j = (Math.random() * (a.length-1)).toFixed(0);
-      b[i] = a[j];
+  var a =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+  var b = [];
+  for (var i = 0; i < length; i++) {
+    var j = (Math.random() * (a.length - 1)).toFixed(0);
+    b[i] = a[j];
   }
   return b.join("");
 }
@@ -23,7 +24,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const register = (req, res) => {
   console.log(req.body);
-  if(req.body.action === "Register"){
+  if (req.body.action === "Register") {
     db.query(
       `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
         req.body.email
@@ -41,9 +42,11 @@ const register = (req, res) => {
               });
             } else {
               db.query(
-                `INSERT INTO users (name , email , password ,image) VALUES ('${
+                `INSERT INTO users (name , email , password ) VALUES ('${
                   req.body.username
-                }',${db.escape(req.body.email)},${db.escape(hash)},'images/empty');`,
+                }',${db.escape(req.body.email)},${db.escape(
+                  hash
+                )},'images/empty');`,
                 (err, result) => {
                   if (err) {
                     return res.status(500).send({
@@ -52,7 +55,7 @@ const register = (req, res) => {
                   }
 
                   let mailSubject = "Mail Verification";
-                  const randomToken = generate_token(32)
+                  const randomToken = generate_token(32);
                   let content =
                     "<p>Hi " +
                     req.body.username +
@@ -82,8 +85,8 @@ const register = (req, res) => {
         }
       }
     );
-  }else{
-    login(req,res);
+  } else {
+    login(req, res);
   }
 };
 

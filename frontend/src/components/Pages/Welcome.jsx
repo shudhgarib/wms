@@ -3,52 +3,57 @@ import React, {useEffect, useState} from "react";
 import Form from "react-bootstrap/Form";
 import "./Welcome.css";
 import {useNavigate} from "react-router-dom";
-// import Adminpanel from "./Admin_panel";
+import DonorsDetails from "./Donors";
+// import DonorsDetails from "./Donors";
+
+// Dummy array of bank data
+const bankDataArray = [
+  {
+    id: 1,
+    BankName: "PUNJAB NATIONAL BANK",
+    AccNo: "4647000100122904",
+    ifsc: "PUNB0464700",
+    AccName: "RAJAN PATEL",
+  },
+  {
+    id: 2,
+    BankName: "STATE BANK OF INDIA",
+    AccNo: "1245222155422835",
+    ifsc: "PUNB0464700",
+    AccName: "KAUSTUBH PATEL",
+  },
+  {
+    id: 3,
+    BankName: "PUNJAB NATIONAL BANK",
+    AccNo: "4647001700118258",
+    ifsc: "PUNB0464700",
+    AccName: "KAUSTUBH PATEL",
+  },
+];
 
 function Welcome() {
   const [utrno, setUtrno] = useState("");
   const [deposit_proof, setDeposit_proof] = useState("");
   const [amount, setAmount] = useState("");
+  const [bankData, setBankData] = useState(bankDataArray[0]); // Initial bank data
+  const [copiedText, setCopiedText] = useState(""); // State to store the copied text
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:8081/welcome", {utrno, deposit_proof, amount})
+      .post("http://localhost:8081/welcome", {
+        bankData,
+        utrno,
+        deposit_proof,
+        amount,
+      })
       .then((res) => {
         console.log(res);
         navigate("/");
       })
       .catch((err) => console.log(err));
   }
-  // Dummy array of bank data
-  const bankDataArray = [
-    {
-      id: 1,
-      BankName: "PUNJAB NATIONAL BANK",
-      AccNo: "4647000100122904",
-      ifsc: "PUNB0464700",
-      AccName: "RAJAN PATEL",
-    },
-    {
-      id: 2,
-      BankName: "STATE BANK OF INDIA",
-      AccNo: "1245222155422835",
-      ifsc: "PUNB0464700",
-      AccName: "KAUSTUBH PATEL",
-    },
-    {
-      id: 3,
-      BankName: "PUNJAB NATIONAL BANK",
-      AccNo: "4647001700118258",
-      ifsc: "PUNB0464700",
-      AccName: "KAUSTUBH PATEL",
-    },
-  ];
-
-  const [bankData, setBankData] = useState(bankDataArray[0]); // Initial bank data
-
-  const [copiedText, setCopiedText] = useState(""); // State to store the copied text
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
@@ -62,6 +67,7 @@ function Welcome() {
   return (
     <>
       <div container className="main my-5 mx-5">
+        {console.log(bankData, 66, "Welcome.js")}
         <div
           className="account-section "
           style={{display: "flex", justifyContent: "center"}}>
@@ -79,7 +85,6 @@ function Welcome() {
             ))}
           </div>
         </div>
-
         <div
           className="section"
           style={{
@@ -311,12 +316,13 @@ function Welcome() {
           </div>
         </div>
       </div>
+
       {copiedText && (
         <div style={{textAlign: "center", marginTop: "10px"}}>
-          <p style={{color: "white"}}>Copied: {copiedText}</p>{" "}
-          {/* Display copied text */}
+          <p style={{color: "white"}}>Copied: {copiedText}</p>
         </div>
       )}
+      <DonorsDetails />
     </>
   );
 }

@@ -122,7 +122,7 @@ export const Donate = () => {
                   name="username"
                   className="form-control"
                   id="username"
-                  placeholder="Full Name"
+                  placeholder="user name"
                   required
                   onChange={(e) => setUsername(e.target.value)}
                 />
