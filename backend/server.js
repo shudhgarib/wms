@@ -40,6 +40,28 @@ app.get("/donor_list", (req, res) => {
 });
 // list end
 
+// donor details code start
+
+app.get("/", (req, res) => {
+  const sql1 = "SELECT * FROM donors_details";
+  db.query(sql1, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+app.post("/welcome", (req, res) => {
+  const sql1 =
+    "INSERT INTO donors_details (`utrno`,`deposit_proof`,`amount`) VALUES (?)";
+  const values = [req.body.utrno, req.body.deposit_proof, req.body.amount];
+  db.query(sql1, [values], (err, data) => {
+    if (err) return res.json("ERROR");
+    return res.json(data);
+  });
+});
+
+// donor details code end
+
 app.use("/api", userRouter);
 app.use("/", webRouter);
 

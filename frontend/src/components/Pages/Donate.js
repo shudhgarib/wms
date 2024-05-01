@@ -17,8 +17,8 @@ export const Donate = () => {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      alert("You are already logged in");
-      window.location.href = "/";
+      // alert("You are already logged in");
+      window.location.href = "/welcome";
     }
   }, []);
 

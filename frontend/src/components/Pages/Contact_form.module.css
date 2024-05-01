@@ -4,21 +4,18 @@
 }
 
 .main {
-  width: 400px;
+  padding: 5px 5px;
   display: flex;
-  border: 5px solid #4CCD99;
+  border: 2px solid #4CCD99;
   box-shadow: 5px 5px 20px #4CCD99, -2px -2px 0px #4CCD99;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 50px auto;
+  margin: 30px auto;
+  min-width: 380px;
 }
 
-input,
-textarea {
-  width: 350px;
-}
 
 h4 {
   margin-top: 10px;
@@ -26,21 +23,31 @@ h4 {
   color: #FFF455;
 }
 
-input,
-textarea {
-  border: 2px solid #4CCD99;
-  border-radius: 5px;
-  padding: 7px;
-}
 
 ::placeholder {
-  font-size: 16px;
-  font-weight: 600;
+  /* font-size: 6px; */
+  font-weight: 300;
 }
-
-
 
 .btn:hover {
   color: white;
   background-color: #FFF455;
+}
+
+@media (max-width:1100px) {
+  .main {
+    min-width: 300px;
+  }
+}
+
+@media (max-width:650px) {
+  .main {
+    min-width: 250px;
+  }
+}
+
+@media (max-width:350px) {
+  .main {
+    min-width: 200px;
+  }
 }

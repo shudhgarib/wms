@@ -24,10 +24,10 @@ const Contact = () => {
             justifyContent: "space-around",
             alignItems: "center",
           }}>
-          <div className="left">
+          <div className="leftside">
             <Contact_point />
           </div>
-          <div className="right">
+          <div className="rightside">
             <Contact_form />
           </div>
         </div>

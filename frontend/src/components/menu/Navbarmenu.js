@@ -176,10 +176,10 @@ const Navbarmenu = () => {
                         Admin Panel{" "}
                       </NavLink>{" "}
                     </li>
-                    {localStorage.getItem("token") !== null &&
+                    {localStorage.getItem("token") !== null && (
                       <li>
                         <NavLink
-                          onClick={()=>{
+                          onClick={() => {
                             console.log(localStorage.getItem("token"));
                             localStorage.removeItem("token");
                             toggleClass();
@@ -190,7 +190,7 @@ const Navbarmenu = () => {
                           Log Out{" "}
                         </NavLink>{" "}
                       </li>
-                    }
+                    )}
                   </ul>
                 </li>
 

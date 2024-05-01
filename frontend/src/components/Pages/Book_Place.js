@@ -24,6 +24,7 @@ const Book_Place = () => {
           borderRadius: "30px",
           maxWidth: "100%",
           margin: "10px",
+          paddingLeft: "5px",
         }}
         type="number"
         placeholder="Enter number of members for pooja."

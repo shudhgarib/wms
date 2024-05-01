@@ -1,57 +1,42 @@
 import React from "react";
+import Form from "react-bootstrap/Form";
 import styles from "./Contact_form.module.css";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 function Contact_form() {
   return (
     <>
       <div className={styles.main}>
-        <form action="">
+        <Form action="">
           <h4 class="animate__animated animate__zoomIn">Send Your Issue...</h4>
+
           <hr
             style={{
               borderTop: "5px dotted #4CCD99",
               opacity: "0.9",
             }}
           />
-          <input
-            type="text"
-            name="Name"
-            id="Name"
-            placeholder="Enter Full Name..."
-            required
-          />
-          <br />
-          <br />
-          <input
-            type="number"
-            name="Contact"
-            id="Contact"
-            placeholder="Enter Mobile No."
-            required
-          />
-          <br />
-          <br />
-          <input
-            type="email"
-            name="Email"
-            id="Email"
-            placeholder="Enter Email Id."
-            required
-          />
-          <br />
-          <br />
-          <input type="text" id="subject" placeholder="Enter Your Subject..." />
-          <br />
-          <br />
-          <textarea
-            name="message"
-            id="message"
-            placeholder="Write Your Queries..."
-            cols="20"
-            rows="3"
-            required
-          />
-          <br />
+
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Control type="text" placeholder="Enter Full Name..." />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Control type="number" placeholder="Enter Mobile No." />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Control type="number" placeholder="Enter Mobile No." />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Control type="email" placeholder="Enter Email" />
+          </Form.Group>
+
+          <FloatingLabel controlId="floatingTextarea2" label="Leave a message ">
+            <Form.Control as="textarea" style={{height: "100px"}} />
+          </FloatingLabel>
+
           <input
             className={styles.btn}
             type="button"
@@ -67,13 +52,14 @@ function Contact_form() {
               alignContent: "center",
               marginLeft: "auto",
               marginRight: "auto",
+              borderRadius: "5px",
               backgroundColor: "#4CCD99",
               fontWeight: "600",
               color: "#fff",
             }}
           />
           <br />
-        </form>
+        </Form>
       </div>
     </>
   );

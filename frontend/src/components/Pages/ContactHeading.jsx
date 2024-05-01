@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactHeading() {
   return (
-    <div>
+    <div className="container">
       <div className="email" style={{marginTop: "45px"}}>
         <a href="mailto:rajanunltd@gmail.com">
           <img
