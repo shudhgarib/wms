@@ -3,18 +3,30 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function FormExample() {
-  const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
+    event.preventDefault();
+    axios
+      .post("http://localhost:8081/admin", {email, password})
+      .then((res) => {
+        console.log(res, 21);
+        if (res.data.user !== "No Record") {
+          navigate("/admin-panel");
+        } else {
+          setShowMessage(true);
+          console.log("Invalid Credentials!");
+        }
+      })
+      .then((err) => console.log(err));
   };
 
   return (
@@ -27,8 +39,6 @@ function FormExample() {
         fontFamily: "Poppins",
       }}>
       <Form
-        noValidate
-        validated={validated}
         onSubmit={handleSubmit}
         style={{
           border: "2px solid #4CCD99",
@@ -36,6 +46,12 @@ function FormExample() {
           borderRadius: "10px",
           boxShadow: "5px 5px 20px #4CCD99, -2px -2px 0px #4CCD99",
         }}>
+        <p
+          className={` ${
+            showMessage ? "" : "d-none"
+          } message text-danger text-center`}>
+          Invalid credentials!
+        </p>
         <div
           className="form-wrap"
           style={{
@@ -57,6 +73,7 @@ function FormExample() {
             }}
           />
         </div>
+
         <Row className="mb-3">
           <Form.Group as={Col} md="18" controlId="validationCustom01">
             <Form.Control
@@ -67,6 +84,7 @@ function FormExample() {
                 border: "2px solid #4CCD99",
                 borderRadius: "30px",
               }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
         </Row>
@@ -80,6 +98,7 @@ function FormExample() {
                 border: "2px solid #4CCD99",
                 borderRadius: "30px",
               }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
         </Row>

@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
+import MyModal from "./ShowModal";
 import Form from "react-bootstrap/Form";
 import "./Welcome.css";
 import {useNavigate} from "react-router-dom";
-import DonorsDetails from "./Donors";
-// import DonorsDetails from "./Donors";
 
-// Dummy array of bank data
 const bankDataArray = [
   {
     id: 1,
@@ -32,6 +30,9 @@ const bankDataArray = [
 ];
 
 function Welcome() {
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
+
   const [utrno, setUtrno] = useState("");
   const [deposit_proof, setDeposit_proof] = useState("");
   const [amount, setAmount] = useState("");
@@ -50,7 +51,7 @@ function Welcome() {
       })
       .then((res) => {
         console.log(res);
-        navigate("/");
+        navigate("");
       })
       .catch((err) => console.log(err));
   }
@@ -240,6 +241,7 @@ function Welcome() {
                     padding: "7px",
                   }}
                   onChange={(e) => setUtrno(e.target.value)}
+                  required
                 />
                 <label
                   htmlFor=""
@@ -257,6 +259,7 @@ function Welcome() {
                     padding: "7px",
                   }}
                   onChange={(e) => setDeposit_proof(e.target.value)}
+                  required
                 />
                 <label
                   htmlFor=""
@@ -275,6 +278,7 @@ function Welcome() {
                     color: "black",
                   }}
                   onChange={(e) => setAmount(e.target.value)}
+                  required
                 />
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check
@@ -296,21 +300,27 @@ function Welcome() {
                     required
                   />
                 </Form.Group>
-                <button
-                  className="animate__animated animate__slideInUp"
-                  type="submit"
-                  style={{
-                    margin: "auto",
-                    padding: "6px 8px",
-                    border: "3px solid #007F73",
-                    borderRadius: "50px",
-                    color: "white",
-                    backgroundColor: "#4CCD99",
-                    marginBottom: "20px",
-                    fontWeight: "bold",
-                  }}>
-                  Submit
-                </button>
+                <div>
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="animate__animated animate__slideInUp"
+                    type="submit"
+                    style={{
+                      margin: "auto",
+                      padding: "6px 8px",
+                      border: "3px solid #007F73",
+                      borderRadius: "50px",
+                      color: "white",
+                      backgroundColor: "#4CCD99",
+                      marginBottom: "20px",
+                      fontWeight: "bold",
+                    }}>
+                    Submit
+                  </button>
+                  {showModal && (
+                    <MyModal onClick={() => setShowModal(!showModal)} />
+                  )}
+                </div>
               </div>
             </form>
           </div>
@@ -322,7 +332,6 @@ function Welcome() {
           <p style={{color: "white"}}>Copied: {copiedText}</p>
         </div>
       )}
-      <DonorsDetails />
     </>
   );
 }

@@ -5,9 +5,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 const View_list = () => {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedYear, setSelectedYear] = useState("2024");
 
   useEffect(() => {
-    fetch("http://localhost:8081/donor_list")
+    fetch(`http://localhost:8081/donor_list?year=${selectedYear}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
@@ -45,7 +46,7 @@ const View_list = () => {
             borderRadius: "20px 20px 0px 0px",
           }}>
           {/* Dropdown for selecting year */}
-          <div className="dropdown">
+          <div className="dropdown mx-2 my-2">
             <Dropdown>
               <Dropdown.Toggle
                 variant="success"
@@ -65,15 +66,21 @@ const View_list = () => {
                   width: "10%",
                   textAlign: "center",
                 }}>
-                <Dropdown.Item href="#/action-1">2024</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">2023</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">2022</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSelectedYear("2024")}>
+                  2024
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setSelectedYear("2023")}>
+                  2023
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setSelectedYear("2022")}>
+                  2022
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
 
           {/* Search bar */}
-          <div className="searchbar">
+          <div className="searchbar mx-2 my-2">
             <input
               type="text"
               placeholder="Search by name"

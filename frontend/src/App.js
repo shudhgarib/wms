@@ -18,6 +18,8 @@ import TowK24 from "./components/Pages/Subpage/TowK24";
 import TowK23 from "./components/Pages/Subpage/TowK23";
 import TowK22 from "./components/Pages/Subpage/TowK22";
 import Welcome from "./components/Pages/Welcome";
+import Adminpanel from "./components/Pages/Admin_panel";
+import Add from "./components/Pages/Add";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             <Route exact path="/TowK24" element={<TowK24 />} />
             <Route exact path="/TowK23" element={<TowK23 />} />
             <Route exact path="/TowK22" element={<TowK22 />} />
+            <Route exact path="/admin-panel" element={<Adminpanel />} />
+            <Route exact path="/add-donor" element={<Add />} />
           </Routes>
           <Footer />
         </Router>

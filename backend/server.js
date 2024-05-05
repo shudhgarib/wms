@@ -71,6 +71,22 @@ app.post("/welcome", (req, res) => {
 
 // donor details code end
 
+// admin code start
+
+app.post("/admin", (req, res) => {
+  const sql2 = "SELECT * FROM admin WHERE adminname = ? AND password = ? ";
+  db.query(sql2, [req.body.email, req.body.password], (err, data) => {
+    if (err) return res.json("Error");
+    if (data.length > 0) {
+      return res.json({user: "Login Successfully"});
+    } else {
+      return res.json({user: "No Record"});
+    }
+  });
+});
+
+// admin code end
+
 app.use("/api", userRouter);
 app.use("/", webRouter);
 

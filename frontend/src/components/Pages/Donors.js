@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import Table from "react-bootstrap/Table";
+import {Link} from "react-router-dom";
 
 function DonorsDetails() {
   const [donors, setDonors] = useState([]);
@@ -20,35 +22,74 @@ function DonorsDetails() {
       .then((res) => setDonors(res.data))
       .catch((err) => console.log(err));
   }, []);
+
   return (
-    <div className="d-flex vh-100 bg-primary justify-content-center align-item-center">
-      <div className="w-50 bg-white rounded p-3">
-        <button className="btn btn-success">Add +</button>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>UTR</th>
-              <th>Deposit-Proof</th>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Acc No</th>
-            </tr>
-          </thead>
-          <tbody>
-            {console.log(donors, 26, "Donors.js")}
-            {donors?.map((data, index) => (
-              <tr key={index}>
-                <td>{data.utrno}</td>
-                <td>Image here</td>
-                <td>{data.amount}</td>
-                <td>{formatDate(data.date)}</td>
-                <td>{data.accno}</td>
+    <>
+      <div
+        style={{
+          textAlign: "center",
+          padding: "10px 50px",
+          display: "flex",
+          justifyContent: "center",
+        }}>
+        <div>
+          <Link
+            to="/add-donor"
+            className="btn mb-3 animate__animated animate__zoomIn"
+            style={{
+              borderRadius: "100%",
+              background: "white",
+              margin: "5px",
+              color: "violet",
+              fontWeight: "bold",
+            }}>
+            +
+          </Link>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>UTR</th>
+                <th>Deposit_Proof</th>
+                <th>Acc No</th>
+                <th colSpan={2}>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {console.log(donors, 26, "Donors.js")}
+              {donors?.map((data, index) => (
+                <tr key={index}>
+                  <td>{data.name}</td>
+                  <td>{data.address}</td>
+                  <td>{data.amount}</td>
+                  <td>{formatDate(data.date)}</td>
+                  <td>{data.utrno}</td>
+                  <td>Image here</td>
+                  <td>{data.accno}</td>
+                  <td>
+                    <input
+                      type="button"
+                      style={{background: "none", color: "red"}}
+                      value={"❌"}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="button"
+                      style={{background: "none", color: "green"}}
+                      value={"➕"}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default DonorsDetails;
