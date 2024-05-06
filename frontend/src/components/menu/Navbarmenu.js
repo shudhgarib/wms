@@ -45,7 +45,7 @@ const Navbarmenu = () => {
           {/* Add Logo  */}
 
           <div className="header__middle__logo">
-            <NavLink exact activeClassName="is-active" to="/">
+            <NavLink exact="true" activeclassname="is-active" to="/">
               <img
                 className="animate__animated animate__zoomIn"
                 src={logo}
@@ -90,8 +90,8 @@ const Navbarmenu = () => {
               <ul className={boxClass.join(" ")}>
                 <li className="menu-item">
                   <NavLink
-                    exact
-                    activeClassName="is-active"
+                    exact="true"
+                    activeclassname="is-active"
                     onClick={toggleClass}
                     to={`/Pages/Donate`}>
                     {" "}
@@ -101,7 +101,7 @@ const Navbarmenu = () => {
                 <li className="menu-item ">
                   <NavLink
                     onClick={toggleClass}
-                    activeClassName="is-active"
+                    activeclassname="is-active"
                     to={`/Pages/Book_Place`}>
                     {" "}
                     Book Place{" "}
@@ -110,7 +110,7 @@ const Navbarmenu = () => {
                 <li className="menu-item ">
                   <NavLink
                     onClick={toggleClass}
-                    activeClassName="is-active"
+                    activeclassname="is-active"
                     to={`/Pages/View_list`}>
                     {" "}
                     View List{" "}
@@ -120,7 +120,7 @@ const Navbarmenu = () => {
                 <li className="menu-item ">
                   <NavLink
                     onClick={toggleClass}
-                    activeClassName="is-active"
+                    activeclassname="is-active"
                     to={`/Pages/Gallery`}>
                     {" "}
                     Gallery{" "}
@@ -142,7 +142,7 @@ const Navbarmenu = () => {
                       {" "}
                       <NavLink
                         onClick={toggleClass}
-                        activeClassName="is-active"
+                        activeclassname="is-active"
                         to={`/Pages/About`}>
                         {" "}
                         About Us{" "}
@@ -151,7 +151,7 @@ const Navbarmenu = () => {
                     <li>
                       <NavLink
                         onClick={toggleClass}
-                        activeClassName="is-active"
+                        activeclassname="is-active"
                         to={`/Pages/Work`}>
                         {" "}
                         How We Work?{" "}
@@ -161,7 +161,7 @@ const Navbarmenu = () => {
                       {" "}
                       <NavLink
                         onClick={toggleClass}
-                        activeClassName="is-active"
+                        activeclassname="is-active"
                         to={`/Pages/Contact`}>
                         {" "}
                         Contact Us{" "}
@@ -170,7 +170,7 @@ const Navbarmenu = () => {
                     <li>
                       <NavLink
                         onClick={toggleClass}
-                        activeClassName="is-active"
+                        activeclassname="is-active"
                         to={`/Pages/Admin`}>
                         {" "}
                         Admin Panel{" "}
@@ -184,7 +184,7 @@ const Navbarmenu = () => {
                             localStorage.removeItem("token");
                             toggleClass();
                           }}
-                          activeClassName="is-active"
+                          activeclassname="is-active"
                           to={`/Pages/Donate`}>
                           {" "}
                           Log Out{" "}

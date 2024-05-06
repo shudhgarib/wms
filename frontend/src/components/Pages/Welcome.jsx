@@ -67,7 +67,7 @@ function Welcome() {
 
   return (
     <>
-      <div container className="main my-5 mx-5">
+      <div container="true" className="main my-5 mx-5">
         {console.log(bankData, 66, "Welcome.js")}
         <div
           className="account-section "
@@ -114,7 +114,7 @@ function Welcome() {
                   cursor: "pointer",
                   backgroundColor: "white",
                   border: "1px solid #fff",
-                  borderRadius: "10px",
+                  borderRadius: "50px",
                   marginLeft: "5px",
                   float: "right",
                   color: "red",
@@ -130,13 +130,24 @@ function Welcome() {
             </label>
 
             <label className="animate__animated animate__slideInLeft">
-              <span>A/C NO : </span> {bankData.AccNo}
+              <span>A/C NO : </span>{" "}
+              <input
+                type="text"
+                value={bankData.AccNo}
+                onChange={(e) =>
+                  setBankData({...bankData, AccNo: e.target.value})
+                }
+                style={{
+                  color: "white",
+                  background: "none",
+                }}
+              />
               <span
                 style={{
                   cursor: "pointer",
                   backgroundColor: "white",
                   border: "1px solid #fff",
-                  borderRadius: "10px",
+                  borderRadius: "50px",
                   marginLeft: "5px",
                   float: "right",
                 }}>
@@ -151,13 +162,24 @@ function Welcome() {
             </label>
 
             <label className="animate__animated animate__slideInLeft">
-              <span>IFCS Code : </span> {bankData.ifsc}
+              <span>IFCS Code : </span>{" "}
+              <input
+                type="text"
+                value={bankData.ifsc}
+                onChange={(e) =>
+                  setBankData({...bankData, ifsc: e.target.value})
+                }
+                style={{
+                  color: "white",
+                  background: "none",
+                }}
+              />
               <span
                 style={{
                   cursor: "pointer",
                   backgroundColor: "white",
                   border: "1px solid #fff",
-                  borderRadius: "10px",
+                  borderRadius: "50px",
                   marginLeft: "5px",
                   float: "right",
                 }}>
@@ -172,13 +194,24 @@ function Welcome() {
             </label>
 
             <label className="animate__animated animate__slideInLeft">
-              <span>Account Name : </span> {bankData.AccName}
+              <span>Account Name : </span>{" "}
+              <input
+                type="text"
+                value={bankData.AccName}
+                onChange={(e) =>
+                  setBankData({...bankData, AccName: e.target.value})
+                }
+                style={{
+                  color: "white",
+                  background: "none",
+                }}
+              />
               <span
                 style={{
                   cursor: "pointer",
                   backgroundColor: "white",
                   border: "1px solid #fff",
-                  borderRadius: "10px",
+                  borderRadius: "50px",
                   marginLeft: "5px",
                   float: "right",
                 }}>
@@ -240,6 +273,7 @@ function Welcome() {
                     color: "black",
                     padding: "7px",
                   }}
+                  value={utrno}
                   onChange={(e) => setUtrno(e.target.value)}
                   required
                 />
@@ -258,6 +292,7 @@ function Welcome() {
                     color: "black",
                     padding: "7px",
                   }}
+                  value={deposit_proof}
                   onChange={(e) => setDeposit_proof(e.target.value)}
                   required
                 />
@@ -277,6 +312,7 @@ function Welcome() {
                     backgroundColor: "white",
                     color: "black",
                   }}
+                  value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   required
                 />
@@ -327,6 +363,7 @@ function Welcome() {
         </div>
       </div>
 
+      {/* Copied text */}
       {copiedText && (
         <div style={{textAlign: "center", marginTop: "10px"}}>
           <p style={{color: "white"}}>Copied: {copiedText}</p>

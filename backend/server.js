@@ -20,6 +20,8 @@ app.use(cors());
 
 // list start
 
+// db connection creation code start
+
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -27,17 +29,53 @@ const db = mysql.createConnection({
   database: "wms",
 });
 
+// db connection creation code end
 app.get("/", (re, res) => {
   return res.json("from backend side edited");
 });
 
-app.get("/donor_list", (req, res) => {
-  const sql = "SELECT * FROM donor_list";
+// 2023 donor list code start
+
+app.get("/donor_list_2023", (req, res) => {
+  const sql = "SELECT * FROM donor_list_2023";
   db.query(sql, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
   });
 });
+// 2023 donor list code end
+
+// 2024 donor list code start
+
+app.get("/donor_list_2024", (req, res) => {
+  const sql = "SELECT * FROM donor_list_2024";
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+// 2024 donor list code end
+
+//  create donor details code start
+
+app.post("/donor_list_2024", (req, res) => {
+  const sql =
+    "INSERT INTO donor_list_2024 (`name`, `amount`, `place`, `date`) VALUES(?)";
+  console.log(req.body);
+  const values = [
+    req.body.name,
+    req.body.amount,
+    req.body.place,
+    req.body.date,
+  ];
+  db.query(sql, [values], (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+//  create donor details code end
+
 // list end
 
 // donor details code start

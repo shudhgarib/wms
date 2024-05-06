@@ -4,15 +4,25 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
-
+import axios from "axios";
 function Add() {
   const [validated, setValidated] = useState(false);
+  const [values, setValues] = useState({
+    name: "",
+    amount: "",
+    place: "",
+    date: "",
+  });
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      axios
+        .post("http://localhost:8081/donor_list_2024", values)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
 
     setValidated(true);
@@ -52,10 +62,16 @@ function Add() {
                 required
                 type="text"
                 placeholder="Enter Full Name"
+                onChange={(e) => setValues({...values, name: e.target.value})}
               />
             </Form.Group>
             <Form.Group as={Col} md="6" controlId="validationCustom02">
-              <Form.Control required type="number" placeholder="Enter Amount" />
+              <Form.Control
+                required
+                type="number"
+                placeholder="Enter Amount"
+                onChange={(e) => setValues({...values, amount: e.target.value})}
+              />
             </Form.Group>
           </Row>
           <Row>
@@ -64,13 +80,22 @@ function Add() {
               md="6"
               className="mb-3"
               controlId="validationCustom03">
-              <Form.Control type="text" placeholder="Address" required />
+              <Form.Control
+                type="text"
+                placeholder="Address"
+                required
+                onChange={(e) => setValues({...values, place: e.target.value})}
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid Address.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="6" controlId="validationCustom04">
-              <Form.Control type="date" required />
+              <Form.Control
+                type="date"
+                required
+                onChange={(e) => setValues({...values, date: e.target.value})}
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid Date.
               </Form.Control.Feedback>

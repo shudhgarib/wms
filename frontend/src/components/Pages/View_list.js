@@ -5,14 +5,16 @@ import Dropdown from "react-bootstrap/Dropdown";
 const View_list = () => {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState("2023");
 
   useEffect(() => {
-    fetch(`http://localhost:8081/donor_list?year=${selectedYear}`)
+    fetch(
+      `http://localhost:8081/donor_list_${selectedYear}?year=${selectedYear}`
+    )
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [selectedYear]);
 
   // Function to format date as "dd-mm-yyyy"
   const formatDate = (dateString) => {
@@ -58,7 +60,7 @@ const View_list = () => {
                   borderRadius: "40px",
                 }}
                 className="animate__animated animate__backInDown">
-                Select Year
+                {selectedYear}
               </Dropdown.Toggle>
 
               <Dropdown.Menu
@@ -71,9 +73,6 @@ const View_list = () => {
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setSelectedYear("2023")}>
                   2023
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setSelectedYear("2022")}>
-                  2022
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
