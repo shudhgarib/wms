@@ -108,6 +108,15 @@ app.post("/welcome", (req, res) => {
 });
 
 // donor details code end
+// donor name code start
+app.get("/donar-name", (req, res) => {
+  const sql = "SELECT name , address FROM users";
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+// donor name code end
 
 // admin code start
 

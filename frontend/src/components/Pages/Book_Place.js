@@ -1,49 +1,109 @@
-import React from "react";
-import {Button} from "react-bootstrap";
+import React, {useState} from "react";
+import {Modal, Button} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import styles from "./Donate.module.css";
 
-const Book_Place = () => {
+function Book_Place({logout}) {
+  const [show, setShow] = useState(false);
+  const [candidate, setCandidate] = useState("");
+  const [candidateError, setCandidateError] = useState("");
+  const navigate = useNavigate();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const validateCandidate = (value) => {
+    let error = "";
+    if (value === "") {
+      error = "Value is required";
+    } else if (value < 1) {
+      error = "Value must be greater than or equal to 1";
+    } else if (value > 10) {
+      error = "Value must be less than or equal to 10";
+    }
+    return error;
+  };
+
+  const handleCandidateChange = (e) => {
+    const {value} = e.target;
+    setCandidate(value);
+    setCandidateError(validateCandidate(value));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleShow();
+  };
+
   return (
     <div
-      className="container"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        textAlign: "center",
+        padding: "20px",
+        top: "0",
+        bottom: "0",
         margin: "auto",
-        maxWidth: "50%",
-        border: "2px solid #4CCD99",
-        borderRadius: "20px",
-        boxShadow: "5px 5px 20px #4CCD99, -2px -2px 0px #4CCD99",
         overflow: "hidden",
       }}>
-      <input
-        className="animate__animated animate__zoomIn"
-        style={{
-          border: "2px solid #fff",
-          borderRadius: "30px",
-          maxWidth: "100%",
-          margin: "10px",
-          paddingLeft: "5px",
-        }}
-        type="number"
-        placeholder="Enter number of members for pooja."
-      />
-      <Button
-        className="animate__animated animate__bounceInLeft"
-        type="submit"
-        style={{
-          backgroundColor: "#4CCD99",
-          border: "none",
-          display: "flex",
-          marginBottom: "10px",
-          borderRadius: "30px",
-          fontWeight: "bold",
-        }}>
-        Book
-      </Button>
+      <h2 className="animate__animated animate__slideInLeft text-white">
+        Enter Number Of Candidates For Worship.
+      </h2>
+      <form onSubmit={handleSubmit}>
+        <div className="main mb-2">
+          <input
+            type="number"
+            id="candidate"
+            name="candidate"
+            required
+            style={{
+              border: "5px solid #4CCD99",
+              height: "50px",
+              padding: "0",
+              lineHeight: "40px",
+              textAlign: "center",
+              boxSizing: "border-box",
+              color: "white",
+              borderRadius: "100px",
+              backgroundColor: "transparent",
+              fontSize: "35px",
+            }}
+            value={candidate}
+            onChange={handleCandidateChange}
+          />
+          <div className={styles.error}>{candidateError}</div>
+        </div>
+        <Button
+          className="animate__animated animate__slideInRight"
+          style={{
+            backgroundColor: "#4CCD99",
+            border: "5px solid #4CCD99",
+            borderRadius: "100px",
+            fontWeight: "bold",
+          }}
+          type="submit">
+          Book{" "}
+        </Button>
+      </form>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Submission Successful</Modal.Title>
+
+          {/* <Button variant="close" onClick={handleClose}></Button> */}
+        </Modal.Header>
+        <Modal.Body>
+          Your Place Reservation Is{" "}
+          <span style={{color: "yellow"}}>Pending</span> Our Committee Member
+          Will Verify Soon And Notify You.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
-};
+}
 
 export default Book_Place;

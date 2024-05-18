@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function DonorsDetails() {
   const [donors, setDonors] = useState([]);
-  const [data, setData] = useState([]);
+  const [userNames, setUserNames] = useState([]);
+  const navigate = useNavigate();
 
   // Function to format date as "dd-mm-yyyy"
   const formatDate = (dateString) => {
@@ -16,12 +17,36 @@ function DonorsDetails() {
     return `${day}-${month}-${year}`;
   };
 
+  // Fetch donor names
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/donar-name")
+      .then((res) => setUserNames(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  // Fetch donor details
   useEffect(() => {
     axios
       .get("http://localhost:8081/donar-details")
       .then((res) => setDonors(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  // Function to delete a donor
+  const handleDelete = (index) => {
+    const updatedDonors = donors.filter((_, i) => i !== index);
+    setDonors(updatedDonors);
+    // You can also send a delete request to the server here if needed
+  };
+
+  // Function to add donor data to another page
+  const handleAddToAnotherPage = (donorData) => {
+    // For example, using localStorage to transfer data
+    localStorage.setItem("selectedDonor", JSON.stringify(donorData));
+    // Then navigate to the other page
+    navigate("/another-page"); // Ensure you have this route configured
+  };
 
   return (
     <>
@@ -59,11 +84,18 @@ function DonorsDetails() {
               </tr>
             </thead>
             <tbody>
-              {console.log(donors, 26, "Donors.js")}
               {donors?.map((data, index) => (
                 <tr key={index}>
-                  <td>{data.name}</td>
-                  <td>{data.address}</td>
+                  <td>
+                    {userNames.map((userName, idx) => (
+                      <li key={idx}>{userName.name}</li>
+                    ))}
+                  </td>
+                  <td>
+                    {userNames.map((userName, idx) => (
+                      <li key={idx}>{userName.address}</li>
+                    ))}
+                  </td>
                   <td>{data.amount}</td>
                   <td>{formatDate(data.date)}</td>
                   <td>{data.utrno}</td>
@@ -74,6 +106,7 @@ function DonorsDetails() {
                       type="button"
                       style={{background: "none", color: "red"}}
                       value={"❌"}
+                      onClick={() => handleDelete(index)}
                     />
                   </td>
                   <td>
@@ -81,6 +114,7 @@ function DonorsDetails() {
                       type="button"
                       style={{background: "none", color: "green"}}
                       value={"➕"}
+                      onClick={() => handleAddToAnotherPage(data)}
                     />
                   </td>
                 </tr>
@@ -92,4 +126,5 @@ function DonorsDetails() {
     </>
   );
 }
+
 export default DonorsDetails;

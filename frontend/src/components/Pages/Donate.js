@@ -1,27 +1,33 @@
 import React, {useState, useEffect} from "react";
 import styles from "./Donate.module.css";
-export const Donate = () => {
+import {useNavigate} from "react-router-dom";
+
+export const Donate = ({login}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [action, setAction] = useState("Login");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login();
+    navigate("Pages/Book_Place");
+  };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
   // make states for maintaining value of each input tag
   const [username, setUsername] = useState("");
   const [fName, setFName] = useState("");
-  const [lName, setLName] = useState("");
+  const [Address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [details, setDetails] = useState("");
   const [password, setPassword] = useState("");
 
   // Error state for each field
   const [usernameError, setUsernameError] = useState("");
   const [fNameError, setFNameError] = useState("");
-  const [lNameError, setLNameError] = useState("");
+  const [AddressError, setAddressError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [detailsError, setDetailsError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
@@ -45,10 +51,9 @@ export const Donate = () => {
         body: JSON.stringify({
           username,
           fName,
-          lName,
+          Address,
           email,
           phone,
-          details,
           password,
           action,
         }),
@@ -97,30 +102,36 @@ export const Donate = () => {
     //username validation code end
     //first name validation code start
     if (fName.trim() === "") {
-      setFNameError("First name is required");
+      setFNameError("Full Name is required");
       isValid = false;
     } else if (fName.trim().length < 2) {
-      setFNameError("First name must be at least 2 characters long");
+      setFNameError("Full Name must be at least 2 characters long");
       isValid = false;
-    } else if (!/^[a-zA-Z]+$/.test(fName.trim())) {
-      setFNameError("First name must contain only alphabetic characters");
+    } else if (!/^[a-zA-Z\s]+$/.test(fName.trim())) {
+      setFNameError(
+        "Full Name must contain only alphabetic characters and spaces"
+      );
+      isValid = false;
+    } else if (fName.trim().split(" ").length - 1 >= 3) {
+      setFNameError("Full Name must contain less than 2 spaces");
       isValid = false;
     } else {
       setFNameError("");
     }
+
     //first name validation code end
     //last name validation code start
-    if (lName.trim() === "") {
-      setLNameError("Last name is required");
+    if (Address.trim() === "") {
+      setAddressError("Address is required");
       isValid = false;
-    } else if (!/^[a-zA-Z]+$/.test(lName.trim())) {
-      setLNameError("Last name must contain only alphabetic characters");
+    } else if (!/^[a-zA-Z]+$/.test(Address.trim())) {
+      setAddressError("Address must contain only alphabetic characters");
       isValid = false;
-    } else if (lName.trim().length < 2) {
-      setLNameError("Last name must be at least 2 characters long");
+    } else if (Address.trim().length < 2) {
+      setAddressError("Address must be at least 2 characters long");
       isValid = false;
     } else {
-      setLNameError("");
+      setAddressError("");
     }
 
     //last name validation code end
@@ -153,16 +164,6 @@ export const Donate = () => {
       setPhoneError("");
     }
     //phone validation code end
-    //details validation code start
-
-    if (details.trim() === "") {
-      setDetailsError("Details are required");
-      isValid = false;
-    } else {
-      setDetailsError("");
-    }
-
-    //details validation code end
     //password validation code start
     if (password.trim() === "") {
       setPasswordError("Password is required");
@@ -259,14 +260,14 @@ export const Donate = () => {
                   className="form-control"
                   id="username"
                   placeholder="user name"
-                  required
+                  value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
                 <div className={styles.error}>{usernameError}</div>
               </div>
             </div>
           )}
-          {/* First name input */}
+          {/* Full Name input */}
           <div className="Inputs">
             <input
               type="text"
@@ -283,8 +284,8 @@ export const Donate = () => {
                   name="fName"
                   className="form-control"
                   id="fName"
-                  placeholder="Enter First Name"
-                  required
+                  placeholder="Enter Full Name"
+                  value={fName}
                   onChange={(e) => setFName(e.target.value)}
                 />
                 <div className={styles.error}>{fNameError}</div>
@@ -293,20 +294,20 @@ export const Donate = () => {
               <div></div>
             )}
           </div>
-          {/* Last name input */}
+          {/* Address input */}
           <div className="Inputs">
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
                   type="text"
-                  name="lName"
+                  name="Address"
                   className="form-control"
-                  id="lName"
-                  placeholder="Enter Last Name"
-                  required
-                  onChange={(e) => setLName(e.target.value)}
+                  id="Address"
+                  placeholder="Enter Your Address"
+                  value={Address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
-                <div className={styles.error}>{lNameError}</div>
+                <div className={styles.error}>{AddressError}</div>
               </div>
             ) : (
               <div></div>
@@ -324,7 +325,7 @@ export const Donate = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter Email"
-                  required
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className={styles.error}>{emailError}</div>
@@ -338,13 +339,12 @@ export const Donate = () => {
             {action === "Register" ? (
               <div className={styles.input_box}>
                 <input
-                  type="number"
+                  type="tel"
                   name="Phone"
                   className="form-control"
                   id="Phone"
                   placeholder="Enter Phone Number"
-                  required
-                  style={{}}
+                  value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
                 <div className={styles.error}>{phoneError}</div>
@@ -353,22 +353,6 @@ export const Donate = () => {
               <div></div>
             )}
           </div>{" "}
-          {/*  <div className="Inputs">
-            {action === "Register" ? (
-              <div className={styles.input_box}>
-                <input
-                  type="file"
-                  name="imageUpload"
-                  className="form-control"
-                  id="imageUpload"
-                  placeholder="Upload image"
-                  required
-                />
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div> */}
           {/*end registration code */}
           {/*start forgot code */}
           {/* Forgot input */}
@@ -381,7 +365,7 @@ export const Donate = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter Registered Email..."
-                  required
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -399,7 +383,7 @@ export const Donate = () => {
                   className="form-control"
                   id="password"
                   placeholder="Password"
-                  required
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
 

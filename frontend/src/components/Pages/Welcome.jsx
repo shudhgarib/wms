@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import MyModal from "./ShowModal";
 import Form from "react-bootstrap/Form";
 import "./Welcome.css";
+import styles from "./Donate.module.css";
+
 import {useNavigate} from "react-router-dom";
 
 const bankDataArray = [
@@ -31,11 +33,21 @@ const bankDataArray = [
 
 function Welcome() {
   const [showModal, setShowModal] = useState(false);
+  // 1. Add State Management for all field error state also code start:
+
+  // Error state for each field
+  const [utrno, setUtrno] = useState("");
+  const [UTRError, setUTRError] = useState("");
+
+  const [deposit_proof, setDeposit_proof] = useState(null);
+  const [deposit_proofError, setDeposit_proofError] = useState("");
+
+  const [amount, setAmount] = useState("");
+  const [AmountError, setAmountError] = useState("");
+
+  // 1. Add State Management for all field code end:
   const closeModal = () => setShowModal(false);
 
-  const [utrno, setUtrno] = useState("");
-  const [deposit_proof, setDeposit_proof] = useState("");
-  const [amount, setAmount] = useState("");
   const [bankData, setBankData] = useState(bankDataArray[0]); // Initial bank data
   const [copiedText, setCopiedText] = useState(""); // State to store the copied text
   const navigate = useNavigate();
@@ -55,15 +67,87 @@ function Welcome() {
       })
       .catch((err) => console.log(err));
   }
+  //2. Validation function for all fields
+  // validation for utr number code start
+  const validateUTR = (utr) => {
+    let error = "";
+    const utrPattern = /^\d{6,12}$/;
+    if (!utr) {
+      error = "UTR number is required";
+    } else if (!utrPattern.test(utr)) {
+      error = "UTR number must be between 6 to 12 digits";
+    }
+    return error;
+  };
+  // validation for utr number code end
+  // validation for proof  code start
+  const validateFile = (file) => {
+    let error = "";
+    const validTypes = ["image/jpeg", "image/png", "application/pdf"];
+    const maxSize = 2 * 1024 * 1024; // 2 MB
 
+    if (!file) {
+      error = "File is required";
+    } else if (!validTypes.includes(file.type)) {
+      error = "File type must be JPEG, PNG, or PDF";
+    } else if (file.size > maxSize) {
+      error = "File size must be less than 2 MB";
+    }
+    return error;
+  };
+
+  // validation for proof  code end
+  // validation for amount  code start
+  const validateAmount = (amount) => {
+    let error = "";
+    if (!amount) {
+      error = "Amount is required";
+    } else if (amount <= 51) {
+      error = "Amount must be greater than 50₹";
+    }
+    return error;
+  };
+
+  // validation for amount  code end
+
+  // 3. Input Change Handler and Validation: for utrno code start
+  const handleInputChange = (e) => {
+    const {value} = e.target;
+    setUtrno(value);
+    setUTRError(validateUTR(value));
+  };
+
+  // Input Change Handler and Validation: for utrno code end
+  // Input Change Handler and Validation: for file proof code start
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setDeposit_proof(file);
+    setDeposit_proofError(validateFile(file));
+  };
+  // Input Change Handler and Validation: for file proof code end
+  // Input Change Handler and Validation: for amount code start
+  const handleAmountChange = (e) => {
+    const {value} = e.target;
+    setAmount(value);
+    setAmountError(validateAmount(value));
+  };
+
+  // Input Change Handler and Validation: for amount code end
+
+  //3. Input Change Handler and Validation: for file proof code end
+
+  // copy code start
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
     setCopiedText(text); // Update state with copied text
   };
+  // copy code end
 
+  // Update bank data when an item is clicked code start
   const handleItemClick = (item) => {
-    setBankData(item); // Update bank data when an item is clicked
+    setBankData(item);
   };
+  // Update bank data when an item is clicked code end
 
   return (
     <>
@@ -262,8 +346,11 @@ function Welcome() {
                   Unique Transaction Reference{" "}
                   <sup style={{color: "red"}}>*</sup>
                 </label>
+                {/* UTR FIELD */}
                 <input
                   type="text"
+                  name="utr"
+                  id="utr"
                   placeholder="6 to 12 Digit UTR Number"
                   className="form-control"
                   style={{
@@ -274,14 +361,18 @@ function Welcome() {
                     padding: "7px",
                   }}
                   value={utrno}
-                  onChange={(e) => setUtrno(e.target.value)}
+                  onChange={handleInputChange}
                   required
                 />
+                <div className={styles.error}>{UTRError}</div>
+
                 <label
                   htmlFor=""
                   className="animate__animated animate__slideInRight ">
                   Upload Your Payment Proof <sup style={{color: "red"}}>*</sup>
                 </label>
+                {/* DEPOSITE PROOF FIELD */}
+
                 <input
                   type="file"
                   className="form-control"
@@ -292,18 +383,23 @@ function Welcome() {
                     color: "black",
                     padding: "7px",
                   }}
-                  value={deposit_proof}
-                  onChange={(e) => setDeposit_proof(e.target.value)}
+                  onChange={handleFileChange}
                   required
                 />
+                <div className={styles.error}>{deposit_proofError}</div>
+
                 <label
                   htmlFor=""
                   className="animate__animated animate__slideInRight ">
                   Amount <sup style={{color: "red"}}>*</sup>
                 </label>
+                {/* AMOUNT FIELD */}
+
                 <input
                   type="number"
                   className="form-control"
+                  name="amount"
+                  id="amount"
                   placeholder="Enter Amount"
                   style={{
                     padding: "7px",
@@ -313,9 +409,11 @@ function Welcome() {
                     color: "black",
                   }}
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={handleAmountChange}
                   required
                 />
+                <div className={styles.error}>{AmountError}</div>
+
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check
                     type="checkbox"
