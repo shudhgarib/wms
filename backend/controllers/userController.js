@@ -42,11 +42,14 @@ const register = (req, res) => {
               });
             } else {
               db.query(
-                `INSERT INTO users (name , email , password ) VALUES ('${
-                  req.body.username
-                }',${db.escape(req.body.email)},${db.escape(
-                  hash
-                )},'images/empty');`,
+                `INSERT INTO users (username, name , email , password ) VALUES ('
+                ${req.body.username},
+                ${req.body.name},
+                ${req.body.mobno},
+                ${req.body.address},
+                ${db.escape(req.body.email)},
+                ${db.escape(hash)},
+                images/empty ');`,
                 (err, result) => {
                   if (err) {
                     return res.status(500).send({

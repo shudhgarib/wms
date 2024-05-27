@@ -26,6 +26,8 @@ import TowK22 from "./components/Pages/Subpage/TowK22";
 import Welcome from "./components/Pages/Welcome";
 import Adminpanel from "./components/Pages/Admin_panel";
 import Add from "./components/Pages/Add";
+import DonorsDetails from "./components/Pages/Donors";
+import Book_Place_Status from "./components/Pages/Book_Place_Status";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,7 +49,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
 
             <Route exact path="/Pages/Donate" element={<Donate />} />
-            <Route exact path="/Pages/Book_Place" element={<Book_Place />} />
+            <Route exact path="/book-place" element={<Book_Place />} />
             <Route exact path="/Pages/View_list" element={<View_list />} />
             <Route exact path="/Pages/About" element={<About />} />
             <Route exact path="/Pages/Work" element={<Work />} />
@@ -61,8 +63,14 @@ function App() {
             <Route exact path="/TowK22" element={<TowK22 />} />
             <Route exact path="/admin-panel" element={<Adminpanel />} />
             <Route exact path="/add-donor" element={<Add />} />
+            <Route exact path="/donors-details" element={<DonorsDetails />} />
             <Route
-              path="/Pages/Book_Place"
+              exact
+              path="/reserve-place"
+              element={<Book_Place_Status />}
+            />
+            <Route
+              path="/book-place"
               element={
                 isAuthenticated ? (
                   <Book_Place logout={logout} />

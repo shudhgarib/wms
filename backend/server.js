@@ -81,33 +81,29 @@ app.post("/donor_list_2024", (req, res) => {
 // donor details code start
 
 app.get("/donar-details", (req, res) => {
-  const sql1 = "SELECT * FROM donors_details";
-  db.query(sql1, (err, data) => {
+  const sql = "SELECT * FROM donors_details";
+  db.query(sql, (err, data) => {
     if (err) return res.json(err);
     console.log(data, 49);
     return res.json(data);
   });
 });
-
-// app.get("/list",(req, res)=>{
-//   const query = 'SELECT * FROM '
-// })
+// donor details code end
 
 app.post("/welcome", (req, res) => {
   const {utrno, deposit_proof, amount, bankData} = req.body;
   const {AccNo} = bankData;
   const date = new Date();
   console.log(utrno, deposit_proof, amount, AccNo, date);
-  const sql1 =
+  const sql =
     "INSERT INTO donors_details (`utrno`,`deposit_proof`,`amount`,`date`, `accno`) VALUES (?)";
   const values = [utrno, deposit_proof, amount, date.toISOString(), AccNo];
-  db.query(sql1, [values], (err, data) => {
+  db.query(sql, [values], (err, data) => {
     if (err) return res.json("ERROR");
     return res.json(data);
   });
 });
 
-// donor details code end
 // donor name code start
 app.get("/donar-name", (req, res) => {
   const sql = "SELECT name , address FROM users";
@@ -118,11 +114,21 @@ app.get("/donar-name", (req, res) => {
 });
 // donor name code end
 
+// donor mobile number code start
+app.get("/donar-mobno", (req, res) => {
+  const sql = "SELECT mob_no FROM users";
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+// donor mobile number code end
+
 // admin code start
 
 app.post("/admin", (req, res) => {
-  const sql2 = "SELECT * FROM admin WHERE adminname = ? AND password = ? ";
-  db.query(sql2, [req.body.email, req.body.password], (err, data) => {
+  const sql = "SELECT * FROM admin WHERE adminname = ? AND password = ? ";
+  db.query(sql, [req.body.email, req.body.password], (err, data) => {
     if (err) return res.json("Error");
     if (data.length > 0) {
       return res.json({user: "Login Successfully"});
@@ -133,6 +139,16 @@ app.post("/admin", (req, res) => {
 });
 
 // admin code end
+// place reservation code start
+app.post("/reserve-place", (req, res) => {
+  const sql = "INSERT INTO reserve_place (`no_of_candidates`) VALUES (?)";
+  const values = [req.body.candidate];
+  db.query(sql, [values], (err, data) => {
+    if (err) return res.json("Error");
+    return res.json(data);
+  });
+});
+// place reservation code end
 
 app.use("/api", userRouter);
 app.use("/", webRouter);

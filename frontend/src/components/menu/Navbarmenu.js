@@ -102,7 +102,7 @@ const Navbarmenu = () => {
                   <NavLink
                     onClick={toggleClass}
                     activeclassname="is-active"
-                    to={`/Pages/Book_Place`}>
+                    to={`/book-place`}>
                     {" "}
                     Book Place{" "}
                   </NavLink>{" "}

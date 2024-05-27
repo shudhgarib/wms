@@ -1,15 +1,30 @@
 import React, {useState, useEffect} from "react";
 import styles from "./Donate.module.css";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export const Donate = ({login}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
   const [action, setAction] = useState("Login");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    login();
-    navigate("Pages/Book_Place");
+  const handleLogin = async () => {
+    try {
+      const {data} = await axios.post("http://localhost:8081/api/login", {
+        email: email,
+        password: password,
+      });
+      if (data) {
+        navigate(`/welcome`);
+      }
+    } catch (error) {
+      alert("user or password is wrong.");
+      console.error(error);
+    }
   };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -461,7 +476,7 @@ export const Donate = ({login}) => {
                   : `${styles.submit}`
               }
               onClick={(e) => {
-                action === "Login" ? handleSubmit(e) : setAction("Login");
+                action === "Login" ? handleLogin(e) : setAction("Login");
               }}>
               Login
             </button>

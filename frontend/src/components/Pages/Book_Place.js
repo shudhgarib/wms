@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import {Modal, Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
 import styles from "./Donate.module.css";
+import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
 
-function Book_Place({logout}) {
-  const [show, setShow] = useState(false);
-  const [candidate, setCandidate] = useState("");
-  const [candidateError, setCandidateError] = useState("");
+function Book_Place() {
   const navigate = useNavigate();
+
+  const [candidate, setCandidate] = useState({
+    candidate: "",
+  });
+  const [show, setShow] = useState(false);
+  const [candidateError, setCandidateError] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,6 +37,12 @@ function Book_Place({logout}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleShow();
+    axios
+      .post("http://localhost:8081/reserve-place", {candidate})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -73,7 +83,7 @@ function Book_Place({logout}) {
           <div className={styles.error}>{candidateError}</div>
         </div>
         <Button
-          className="animate__animated animate__slideInRight"
+          className="animate__animated animate__slideInRight btn-success"
           style={{
             backgroundColor: "#4CCD99",
             border: "5px solid #4CCD99",
@@ -97,9 +107,11 @@ function Book_Place({logout}) {
           Will Verify Soon And Notify You.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
+          <Link to="/">
+            <Button variant="danger" onClick={handleClose}>
+              Close
+            </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>

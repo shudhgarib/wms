@@ -58,18 +58,7 @@ function DonorsDetails() {
           justifyContent: "center",
         }}>
         <div>
-          <Link
-            to="/add-donor"
-            className="btn mb-3 animate__animated animate__zoomIn"
-            style={{
-              borderRadius: "100%",
-              background: "white",
-              margin: "5px",
-              color: "violet",
-              fontWeight: "bold",
-            }}>
-            +
-          </Link>
+          <h3 style={{color: "white"}}>DONORS STATUS</h3>
           <Table striped bordered hover>
             <thead>
               <tr>
