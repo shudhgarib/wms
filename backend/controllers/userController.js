@@ -30,7 +30,7 @@ const register = (req, res) => {
         req.body.email
       )});`,
       (err, result) => {
-        if (false) {
+        if (result.length > 0) {
           return res.status(409).send({
             msg: "user already exist!",
           });
