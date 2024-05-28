@@ -19,6 +19,7 @@ export const Donate = ({login}) => {
         password: password,
       });
       if (data) {
+        localStorage.setItem("token", data.token);
         navigate(`/welcome`);
       }
     } catch (error) {
@@ -47,7 +48,7 @@ export const Donate = ({login}) => {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      // alert("You are already logged in");
+      alert("You are already logged in");
       window.location.href = "/welcome";
     }
   }, []);
@@ -80,12 +81,12 @@ export const Donate = ({login}) => {
           if (data.success) {
             // redirect the user to the dashboard
             window.location.href = "/Welcome";
-            // add the token to cookies
-            localStorage.setItem("token", data.token);
           } else {
             if (data.msg === "the user has been registered with us!") {
               setAction("Login");
               alert("User Registered Successfully, Please Login");
+              setEmail("");
+              setPassword("");
             }
             // show an error message
             alert(data.msg);
