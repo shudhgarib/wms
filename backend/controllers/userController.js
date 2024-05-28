@@ -42,9 +42,9 @@ const register = (req, res) => {
               });
             } else {
               db.query(
-                `INSERT INTO users (name , email , password ,image) VALUES ('${
+                `INSERT INTO users (name , email , password ,image, mobno, address) VALUES ('${
                   req.body.username
-                }',${db.escape(req.body.email)},${db.escape(hash)},'images/empty');`,
+                }',${db.escape(req.body.email)},${db.escape(hash)},${req.body.mobno},${req.body.address},'images/empty');`,
                 (err, result) => {
                   if (err) {
                     return res.status(500).send({
