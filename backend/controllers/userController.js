@@ -24,7 +24,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const register = (req, res) => {
   console.log(req.body);
-  if (req.body.action === "Register") {
+  if(req.body.action === "Register"){
     db.query(
       `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
         req.body.email
@@ -42,22 +42,17 @@ const register = (req, res) => {
               });
             } else {
               db.query(
-                `INSERT INTO users (username, name , email , password ) VALUES ('
-                ${req.body.username}',
-                '${req.body.name}',
-                '${req.body.mobno}',
-                '${req.body.address}',
-                '${db.escape(req.body.email)}',
-                '${db.escape(hash)}');`,
+                `INSERT INTO users (name , email , password ,image) VALUES ('${
+                  req.body.username
+                }',${db.escape(req.body.email)},${db.escape(hash)},'images/empty');`,
                 (err, result) => {
                   if (err) {
                     return res.status(500).send({
                       msg: err,
                     });
                   }
-
                   let mailSubject = "Mail Verification";
-                  const randomToken = generate_token(32);
+                  const randomToken = generate_token(32)
                   let content =
                     "<p>Hi " +
                     req.body.username +
@@ -87,8 +82,8 @@ const register = (req, res) => {
         }
       }
     );
-  } else {
-    login(req, res);
+  }else{
+    login(req,res);
   }
 };
 
