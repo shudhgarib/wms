@@ -30,7 +30,7 @@ const register = (req, res) => {
         req.body.email
       )});`,
       (err, result) => {
-        if (result.length > 0) {
+        if (false) {
           return res.status(409).send({
             msg: "user already exist!",
           });
@@ -43,13 +43,12 @@ const register = (req, res) => {
             } else {
               db.query(
                 `INSERT INTO users (username, name , email , password ) VALUES ('
-                ${req.body.username},
-                ${req.body.name},
-                ${req.body.mobno},
-                ${req.body.address},
-                ${db.escape(req.body.email)},
-                ${db.escape(hash)},
-                images/empty ');`,
+                ${req.body.username}',
+                '${req.body.name}',
+                '${req.body.mobno}',
+                '${req.body.address}',
+                '${db.escape(req.body.email)}',
+                '${db.escape(hash)}');`,
                 (err, result) => {
                   if (err) {
                     return res.status(500).send({
