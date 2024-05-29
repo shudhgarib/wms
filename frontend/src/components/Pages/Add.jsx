@@ -1,9 +1,10 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
+
 function Add() {
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState({
@@ -18,9 +19,21 @@ function Add() {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      // If the form is valid, send the data to the correct endpoint
       axios
         .post("http://localhost:8081/donor_list_2024", values)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          // Optionally, you can reset the form values after successful submission
+          setValues({
+            name: "",
+            amount: "",
+            place: "",
+            date: "",
+          });
+          // Add any other actions after successful submission
+        })
         .catch((err) => console.log(err));
     }
 
@@ -61,6 +74,7 @@ function Add() {
                 required
                 type="text"
                 placeholder="Enter Full Name"
+                value={values.name}
                 onChange={(e) => setValues({...values, name: e.target.value})}
               />
             </Form.Group>
@@ -69,6 +83,7 @@ function Add() {
                 required
                 type="number"
                 placeholder="Enter Amount"
+                value={values.amount}
                 onChange={(e) => setValues({...values, amount: e.target.value})}
               />
             </Form.Group>
@@ -83,6 +98,7 @@ function Add() {
                 type="text"
                 placeholder="Address"
                 required
+                value={values.place}
                 onChange={(e) => setValues({...values, place: e.target.value})}
               />
               <Form.Control.Feedback type="invalid">
@@ -93,6 +109,7 @@ function Add() {
               <Form.Control
                 type="date"
                 required
+                value={values.date}
                 onChange={(e) => setValues({...values, date: e.target.value})}
               />
               <Form.Control.Feedback type="invalid">

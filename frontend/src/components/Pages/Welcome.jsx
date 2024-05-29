@@ -19,7 +19,7 @@ const bankDataArray = [
     id: 2,
     BankName: "STATE BANK OF INDIA",
     AccNo: "1245222155422835",
-    ifsc: "PUNB0464700",
+    ifsc: "SBIN0014325",
     AccName: "KAUSTUBH PATEL",
   },
   {
@@ -27,12 +27,13 @@ const bankDataArray = [
     BankName: "PUNJAB NATIONAL BANK",
     AccNo: "4647001700118258",
     ifsc: "PUNB0464700",
-    AccName: "KAUSTUBH PATEL",
+    AccName: "AMAN PATEL",
   },
 ];
 
 function Welcome() {
   const [showModal, setShowModal] = useState(false);
+
   // 1. Add State Management for all field error state also code start:
 
   // Error state for each field
@@ -246,7 +247,7 @@ function Welcome() {
             </label>
 
             <label className="animate__animated animate__slideInLeft">
-              <span>IFCS Code : </span>{" "}
+              <span>IFSC Code : </span>{" "}
               <input
                 type="text"
                 value={bankData.ifsc}

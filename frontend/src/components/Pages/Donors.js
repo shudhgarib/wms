@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function DonorsDetails() {
   const [donors, setDonors] = useState([]);
-  const [userNames, setUserNames] = useState([]);
   const navigate = useNavigate();
 
   // Function to format date as "dd-mm-yyyy"
@@ -17,18 +16,10 @@ function DonorsDetails() {
     return `${day}-${month}-${year}`;
   };
 
-  // Fetch donor names
-  useEffect(() => {
-    axios
-      .get("http://localhost:8081/donar-name")
-      .then((res) => setUserNames(res.data))
-      .catch((err) => console.log(err));
-  }, []);
-
   // Fetch donor details
   useEffect(() => {
     axios
-      .get("http://localhost:8081/donar-details")
+      .get("http://localhost:8081/donors")
       .then((res) => setDonors(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -67,29 +58,21 @@ function DonorsDetails() {
                 <th>Amount</th>
                 <th>Date</th>
                 <th>UTR</th>
-                <th>Deposit_Proof</th>
                 <th>Acc No</th>
+                <th>Deposit Proof</th>
                 <th colSpan={2}>Action</th>
               </tr>
             </thead>
             <tbody>
-              {donors?.map((data, index) => (
+              {donors?.map((donor, index) => (
                 <tr key={index}>
-                  <td>
-                    {userNames.map((userName, idx) => (
-                      <li key={idx}>{userName.name}</li>
-                    ))}
-                  </td>
-                  <td>
-                    {userNames.map((userName, idx) => (
-                      <li key={idx}>{userName.address}</li>
-                    ))}
-                  </td>
-                  <td>{data.amount}</td>
-                  <td>{formatDate(data.date)}</td>
-                  <td>{data.utrno}</td>
-                  <td>Image here</td>
-                  <td>{data.accno}</td>
+                  <td>{donor.name}</td>
+                  <td>{donor.address}</td>
+                  <td>{donor.amount}</td>
+                  <td>{formatDate(donor.date)}</td>
+                  <td>{donor.utrno}</td>
+                  <td>{donor.accno}</td>
+                  <td>{donor.deposit_proof}</td>
                   <td>
                     <input
                       type="button"
@@ -103,7 +86,7 @@ function DonorsDetails() {
                       type="button"
                       style={{background: "none", color: "green"}}
                       value={"➕"}
-                      onClick={() => handleAddToAnotherPage(data)}
+                      onClick={() => handleAddToAnotherPage(donor)}
                     />
                   </td>
                 </tr>
